@@ -9,16 +9,6 @@ const routes: Array<RouteConfig> = [
         path: '/',
         name: 'Home',
         component: Home
-    },
-    {
-        path: '/about',
-        name: 'About',
-        component: () => import('../views/About.vue')
-    },
-    {
-        path: '/main',
-        name: 'Main',
-        component: () => import('../views/Main.vue')
     }
 ]
 
