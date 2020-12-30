@@ -5,8 +5,6 @@
       |
       <router-link to="/about">About</router-link>
       |
-      <router-link to="/scene2">Scene 2</router-link>
-      |
       <router-link to="/main">Main</router-link>
     </div>
     <router-view/>

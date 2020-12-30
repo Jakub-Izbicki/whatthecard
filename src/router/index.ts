@@ -16,11 +16,6 @@ const routes: Array<RouteConfig> = [
         component: () => import('../views/About.vue')
     },
     {
-        path: '/scene2',
-        name: 'Scene2',
-        component: () => import('../views/Scene2.vue')
-    },
-    {
         path: '/main',
         name: 'Main',
         component: () => import('../views/Main.vue')
