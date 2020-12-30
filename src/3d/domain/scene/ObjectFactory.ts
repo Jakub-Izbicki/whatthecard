@@ -1,9 +1,9 @@
-import {Geometry, Object3D, SplineCurve, Vector2} from "three";
+import {Geometry, Object3D, Vector2} from "three";
 import {CSS3DObject} from "three/examples/jsm/renderers/CSS3DRenderer";
 import * as THREE from "three";
-import Shadows from "@/domain/scene/Shadows";
+import Shadows from "@/3d/domain/scene/Shadows";
 import {Vue} from "vue-property-decorator";
-import CardComponent from "@/components/card/CardComponent.vue";
+import CardComponent from "@/3d/components/card/CardComponent.vue";
 
 export default class ObjectFactory {
 

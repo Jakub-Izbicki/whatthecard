@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
-import SceneContainer from "@/components/scene/SceneContainer.vue"
+import SceneContainer from "@/3d/components/scene/SceneContainer.vue"
 import axios from "axios";
 
 @Component({

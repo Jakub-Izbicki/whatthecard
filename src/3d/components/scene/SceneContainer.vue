@@ -4,8 +4,8 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator"
-import RenderScene from "@/domain/scene/RenderScene";
-import ObjectFactory from "@/domain/scene/ObjectFactory";
+import RenderScene from "@/3d/domain/scene/RenderScene";
+import ObjectFactory from "@/3d/domain/scene/ObjectFactory";
 
 @Component
 export default class SceneContainer extends Vue {

@@ -3,7 +3,7 @@ import {CSS3DRenderer} from "three/examples/jsm/renderers/CSS3DRenderer";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
 import {AmbientLight, Camera, DirectionalLight, PerspectiveCamera, Renderer, Scene, WebGLRenderer} from "three";
-import Shadows from "@/domain/scene/Shadows";
+import Shadows from "@/3d/domain/scene/Shadows";
 
 export default class RenderScene {
 
