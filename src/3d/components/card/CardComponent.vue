@@ -1,5 +1,5 @@
 <template>
-  <img :src="src" class="cardComponent">
+  <img :src="src" class="cardComponentBak">
 </template>
 
 <script lang="ts">
