@@ -53,33 +53,50 @@ body,
 }
 
 .cardCover {
-  @apply relative top-0 bg-gray-500;
+  box-shadow: 0px 10px 15px 0px;
+  @apply relative top-0 skeletonBg;
   @apply flex flex-col items-center;
   //@apply opacity-75;
 }
 
+.skeletonBg {
+  @apply bg-gray-500;
+}
+
+.skeletonHighlightBg {
+  @apply bg-gray-400;
+}
+
 .cardTitleSkeleton {
-  height: 7%;
+  height: 6%;
   margin: 5.7% 0 0 0;
   border-radius: 0.85rem;
   width: 90%;
-  @apply absolute bg-gray-600
+  @apply absolute skeletonHighlightBg;
 }
 
 .cardImageSkeleton {
   height: 44.8%;
   margin: 15.8% 0 0 0;
-  border-radius: 0.3rem;
+  border-radius: 0.85rem;
   width: 86%;
-  @apply absolute bg-gray-400
+  @apply absolute skeletonHighlightBg
 }
 
 .cardSubtitleSkeleton {
   height: 6%;
-  margin: 78.5% 0 0 0;
+  margin: 80.1% 0 0 0;
   border-radius: 0.85rem;
-  width: 90%;
-  @apply absolute bg-gray-600
+  width: 88%;
+  @apply absolute skeletonHighlightBg
+}
+
+.cardOracle1Skeleton {
+  height: 5%;
+  margin: 85% 0 0 0;
+  border-radius: 0.85rem;
+  width: 88%;
+  @apply absolute skeletonHighlightBg
 }
 
 .cardComponentBak {
