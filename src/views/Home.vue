@@ -1,6 +1,6 @@
 <template>
   <div class="stretched-content-centered">
-    <Card :promised-card-data="promisedCardData"></Card>
+    <CardQuestion :promised-card-data="promisedCardData"></CardQuestion>
   </div>
 </template>
 
@@ -8,9 +8,10 @@
 import {Component, Vue} from "vue-property-decorator";
 import Card from "@/components/Card.vue";
 import PromisedCardData from "@/domain/PromisedCardData";
+import CardQuestion from "@/components/CardQuestion.vue";
 
 @Component({
-  components: {Card}
+  components: {CardQuestion, Card}
 })
 export default class Home extends Vue {
 
