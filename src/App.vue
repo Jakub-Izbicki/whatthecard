@@ -81,9 +81,8 @@ body,
 .cardTitleSkeleton {
   height: 6%;
   margin: 5.7% 0 0 0;
-  border-radius: 0.5rem;
   width: 90%;
-  @apply absolute skeletonHighlightBg;
+  @apply absolute skeletonHighlightBg rounded-full;
 }
 
 .cardImageSkeleton {
@@ -97,17 +96,15 @@ body,
 .cardSubtitleSkeleton {
   height: 6%;
   margin: 80.1% 0 0 0;
-  border-radius: 0.5rem;
   width: 88%;
-  @apply absolute skeletonHighlightBg;
+  @apply absolute skeletonHighlightBg rounded-full;
 }
 
 .cardOracle1Skeleton {
   height: 5%;
   margin: 85% 0 0 0;
-  border-radius: 0.5rem;
   width: 88%;
-  @apply absolute skeletonHighlightBg;
+  @apply absolute skeletonHighlightBg rounded-full;
 }
 
 .cardComponentBak {
