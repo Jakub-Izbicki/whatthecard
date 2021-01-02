@@ -39,7 +39,7 @@ body,
 }
 
 .cardContainer {
-  @apply cardShape relative m-5 transition-all transform  shadow-2xl;
+  @apply cardShape relative m-5 shadow-2xl;
 }
 
 .cardShape {
@@ -52,22 +52,26 @@ body,
   @apply absolute top-0;
 }
 
-.cardSkeleton {
-  @apply relative top-0 skeletonBg cardShape;
-  @apply flex flex-col items-center;
-  //@apply opacity-75;
-}
-
 .darkBackground {
   background: #363636;
+}
+
+.darkBackgroundFocus {
+  background: #3c3c3c;
 }
 
 .darkHighlight {
   @apply bg-gray-400;
 }
 
-.skeletonBg {
-  @apply darkBackground;
+.cardSkeleton {
+  @apply relative top-0 darkBackground cardShape;
+  @apply flex flex-col items-center;
+  //@apply opacity-75;
+}
+
+.cardSkeleton:hover {
+  @apply darkBackgroundFocus;
 }
 
 .skeletonHighlightBg {
@@ -114,7 +118,7 @@ body,
 }
 
 .questionButton {
-  @apply transition duration-200 transform hover:scale-105;
+  @apply transition duration-200 transform hover:opacity-90;
   @apply m-2 shadow-lg;
 }
 </style>
