@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Card :promised-card-data="promisedCardData"></Card>
+    <Card :promised-card-data="promisedCardDatas[0]"></Card>
+    <QuestionButtons :promised-card-datas="promisedCardDatas"></QuestionButtons>
   </div>
 </template>
 
@@ -8,14 +9,15 @@
 import {Vue, Component, Prop} from "vue-property-decorator"
 import Card from "@/components/Card.vue";
 import PromisedCardData from "@/domain/PromisedCardData";
+import QuestionButtons from "@/components/QuestionButtons.vue";
 
 @Component({
-  components: {Card}
+  components: {QuestionButtons, Card}
 })
 export default class CardQuestion extends Vue {
 
-  @Prop({required: true, type: PromisedCardData})
-  private promisedCardData!: PromisedCardData;
+  @Prop({required: true})
+  private promisedCardDatas!: PromisedCardData[];
 }
 </script>
 

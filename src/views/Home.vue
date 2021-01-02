@@ -1,6 +1,6 @@
 <template>
   <div class="stretched-content-centered">
-    <CardQuestion :promised-card-data="promisedCardData"></CardQuestion>
+    <CardQuestion :promised-card-datas="[promisedCardData]"></CardQuestion>
   </div>
 </template>
 
