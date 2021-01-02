@@ -1,19 +1,19 @@
 <template>
   <div class="stretched-content-centered">
-    <Card :incoming-card-data="cardData"></Card>
+    <Card :promised-card-data="promisedCardData"></Card>
   </div>
 </template>
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
 import Card from "@/components/Card.vue";
-import CardDataProvider from "@/domain/CardDataProvider";
+import PromisedCardData from "@/domain/PromisedCardData";
 
 @Component({
   components: {Card}
 })
 export default class Home extends Vue {
 
-  private cardData = CardDataProvider.newRandom();
+  private promisedCardData = PromisedCardData.newRandom();
 }
 </script>

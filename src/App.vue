@@ -43,8 +43,8 @@ body,
 }
 
 .cardShape {
-  height: (88 * 5) + px;
-  width: (63 * 5) + px;
+  height: (88 * 7) + px;
+  width: (63 * 7) + px;
   border-radius: 0.85rem;
 }
 
@@ -53,7 +53,7 @@ body,
 }
 
 .cardCover {
-  box-shadow: 0px 5px 10px 0px;
+  box-shadow: 0px 5px 5px 0px;
   @apply relative top-0 skeletonBg;
   @apply flex flex-col items-center;
   //@apply opacity-75;

@@ -14,17 +14,18 @@
 <script lang="ts">
 import {Component, Prop, Vue} from "vue-property-decorator"
 import CardData from "@/domain/CardData";
+import PromisedCardData from "@/domain/PromisedCardData";
 
 @Component
 export default class CardSkeleton extends Vue {
 
-  @Prop({required: true, type: Promise})
-  private incomingCardData!: Promise<CardData>;
+  @Prop({required: true, type: PromisedCardData})
+  private promisedCardData!: PromisedCardData;
 
   private cardData: CardData | null = null;
 
   mounted() {
-    this.incomingCardData.then(data => this.cardData = data);
+    this.promisedCardData.get().then(data => this.cardData = data);
   }
 }
 </script>
