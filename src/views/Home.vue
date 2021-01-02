@@ -1,6 +1,6 @@
 <template>
   <div class="stretched-content-centered">
-    <CardQuestion :promised-card-datas="[promisedCardData]"></CardQuestion>
+    <CardQuestion :promised-card-datas="promisedCardData"></CardQuestion>
   </div>
 </template>
 
@@ -15,6 +15,6 @@ import CardQuestion from "@/components/CardQuestion.vue";
 })
 export default class Home extends Vue {
 
-  private promisedCardData = PromisedCardData.newRandom();
+  private promisedCardData = [PromisedCardData.newRandom(), PromisedCardData.newRandom(), PromisedCardData.newRandom(), PromisedCardData.newRandom()];
 }
 </script>

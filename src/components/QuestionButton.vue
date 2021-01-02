@@ -1,6 +1,5 @@
 <template>
-  <b-button class="w-full"
-            :loading="!cardData">
+  <b-button :loading="!cardData">
     {{ name }}
   </b-button>
 </template>
