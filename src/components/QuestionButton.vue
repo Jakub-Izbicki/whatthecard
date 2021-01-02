@@ -1,5 +1,8 @@
 <template>
-  <b-button :loading="!cardData">
+  <b-button class="questionButton"
+            :loading="!cardData"
+            rounded
+            type="is-dark">
     {{ name }}
   </b-button>
 </template>

@@ -39,8 +39,7 @@ body,
 }
 
 .cardContainer {
-  box-shadow: 0px 5px 5px 0px;
-  @apply cardShape relative m-5;
+  @apply cardShape relative m-5 transition-all transform  shadow-2xl;
 }
 
 .cardShape {
@@ -59,12 +58,20 @@ body,
   //@apply opacity-75;
 }
 
+.darkBackground {
+  background: #363636;
+}
+
+.darkHighlight {
+  @apply bg-gray-400;
+}
+
 .skeletonBg {
-  @apply bg-gray-500;
+  @apply darkBackground;
 }
 
 .skeletonHighlightBg {
-  @apply bg-gray-400;
+  background: #5f5f5f;
 }
 
 .cardTitleSkeleton {
@@ -80,7 +87,7 @@ body,
   margin: 15.8% 0 0 0;
   border-radius: 0.5rem;
   width: 86%;
-  @apply absolute skeletonHighlightBg
+  @apply absolute skeletonHighlightBg;
 }
 
 .cardSubtitleSkeleton {
@@ -88,7 +95,7 @@ body,
   margin: 80.1% 0 0 0;
   border-radius: 0.5rem;
   width: 88%;
-  @apply absolute skeletonHighlightBg
+  @apply absolute skeletonHighlightBg;
 }
 
 .cardOracle1Skeleton {
@@ -96,7 +103,7 @@ body,
   margin: 85% 0 0 0;
   border-radius: 0.5rem;
   width: 88%;
-  @apply absolute skeletonHighlightBg
+  @apply absolute skeletonHighlightBg;
 }
 
 .cardComponentBak {
@@ -104,5 +111,10 @@ body,
   width: 63px;
   border-radius: 0.17rem;
   @apply hover:opacity-90;
+}
+
+.questionButton {
+  @apply transition duration-200 transform hover:scale-105;
+  @apply m-2 shadow-lg;
 }
 </style>

@@ -1,5 +1,5 @@
-import "tailwindcss/tailwind.css"
 import 'buefy/dist/buefy.css'
+import "tailwindcss/tailwind.css"
 import Buefy from 'buefy'
 import Vue from 'vue'
 import App from './App.vue'
