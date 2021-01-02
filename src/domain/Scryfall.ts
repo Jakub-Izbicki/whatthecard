@@ -7,9 +7,9 @@ export default class Scryfall {
 
     private static ONCE = 1;
 
-    private static _200_MS = 200;
+    private static PER_200_MS = 100;
 
-    public static throttledFetch = throttledQueue(Scryfall.ONCE, Scryfall._200_MS);
+    public static throttledFetch = throttledQueue(Scryfall.ONCE, Scryfall.PER_200_MS);
 
     public static fetch(request: ScryfallRequest): Promise<AxiosResponse<CardData>> {
         return new Promise((resolve, reject) => {
@@ -22,6 +22,9 @@ export default class Scryfall {
     }
 }
 
+// todo: set full_art to false in request
+// todo: non-tokens?
+// todo: ass selecting card type
 export class ScryfallRequest {
 
     private static RANDOM_CARD = "https://api.scryfall.com/cards/random";

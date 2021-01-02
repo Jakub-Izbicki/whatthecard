@@ -39,7 +39,8 @@ body,
 }
 
 .cardContainer {
-  @apply relative;
+  box-shadow: 0px 5px 5px 0px;
+  @apply cardShape relative m-5;
 }
 
 .cardShape {
@@ -48,13 +49,12 @@ body,
   border-radius: 0.85rem;
 }
 
-.cardCoverContainer {
+.cardSkeletonContainer {
   @apply absolute top-0;
 }
 
-.cardCover {
-  box-shadow: 0px 5px 5px 0px;
-  @apply relative top-0 skeletonBg;
+.cardSkeleton {
+  @apply relative top-0 skeletonBg cardShape;
   @apply flex flex-col items-center;
   //@apply opacity-75;
 }

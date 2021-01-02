@@ -1,6 +1,6 @@
 <template>
-  <div class="cardCoverContainer">
-    <div class="cardShape cardCover">
+  <div class="cardSkeletonContainer">
+    <div class="cardSkeleton">
       <div class="cardTitleSkeleton"></div>
 
       <div v-if="!cardData" class="cardImageSkeleton"></div>
