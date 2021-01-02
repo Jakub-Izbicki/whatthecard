@@ -1,8 +1,10 @@
 import CardData from "@/domain/CardData";
+import Scryfall, {ScryfallRequest} from "@/domain/Scryfall";
+import {AxiosResponse} from "axios";
 
 export default class PromisedCardData {
 
-    private cardData: Promise<CardData> | null = null;
+    private cardData: Promise<AxiosResponse<CardData>> | null = null;
 
     public static newRandom(): PromisedCardData {
         return new PromisedCardData();
@@ -10,12 +12,15 @@ export default class PromisedCardData {
 
     public fetch(): void {
         if (!this.cardData) {
-            this.cardData = Promise.resolve(new CardData());
+            const fetch = Scryfall.fetch(ScryfallRequest.forRandomCard());
+            fetch.catch(error => console.error(error));
+
+            this.cardData = fetch;
         }
     }
 
     public get(): Promise<CardData> {
         this.fetch();
-        return this.cardData as Promise<CardData>;
+        return (this.cardData as Promise<AxiosResponse<CardData>>).then(response => response.data);
     }
 }

@@ -4,7 +4,7 @@
       <div class="cardTitleSkeleton"></div>
 
       <div v-if="!cardData" class="cardImageSkeleton"></div>
-      <img v-else class="cardImageSkeleton" :src="cardData.getArtCropUrl()">
+      <img v-else class="cardImageSkeleton" :src="cardData.image_uris.art_crop">
 
       <div class="cardSubtitleSkeleton"></div>
     </div>
@@ -25,7 +25,10 @@ export default class CardSkeleton extends Vue {
   private cardData: CardData | null = null;
 
   mounted() {
-    this.promisedCardData.get().then(data => this.cardData = data);
+    this.promisedCardData.get().then(data => {
+      // console.info(data)
+      this.cardData = data
+    });
   }
 }
 </script>
