@@ -53,7 +53,7 @@ body,
 }
 
 .cardCover {
-  box-shadow: 0px 10px 15px 0px;
+  box-shadow: 0px 5px 10px 0px;
   @apply relative top-0 skeletonBg;
   @apply flex flex-col items-center;
   //@apply opacity-75;
@@ -70,7 +70,7 @@ body,
 .cardTitleSkeleton {
   height: 6%;
   margin: 5.7% 0 0 0;
-  border-radius: 0.85rem;
+  border-radius: 0.5rem;
   width: 90%;
   @apply absolute skeletonHighlightBg;
 }
@@ -78,7 +78,7 @@ body,
 .cardImageSkeleton {
   height: 44.8%;
   margin: 15.8% 0 0 0;
-  border-radius: 0.85rem;
+  border-radius: 0.5rem;
   width: 86%;
   @apply absolute skeletonHighlightBg
 }
@@ -86,7 +86,7 @@ body,
 .cardSubtitleSkeleton {
   height: 6%;
   margin: 80.1% 0 0 0;
-  border-radius: 0.85rem;
+  border-radius: 0.5rem;
   width: 88%;
   @apply absolute skeletonHighlightBg
 }
@@ -94,7 +94,7 @@ body,
 .cardOracle1Skeleton {
   height: 5%;
   margin: 85% 0 0 0;
-  border-radius: 0.85rem;
+  border-radius: 0.5rem;
   width: 88%;
   @apply absolute skeletonHighlightBg
 }
