@@ -1,9 +1,9 @@
 <template>
-  <div class="p-5 stretched relative" @click="toggleShowCard">
+  <div class="stretched relative" @click="toggleShowCard">
     <img v-if="cardData"
          class="cardShape stretched" :src="cardData.image_uris.large">
 
-    <div class="p-5 absolute-stretched"
+    <div class="absolute-stretched"
          :class="{'opacity-0': showCard}">
       <div class="cardSkeleton stretched relative flex flex-col items-center">
 <!--        <div class="cardTitleSkeleton"></div>-->

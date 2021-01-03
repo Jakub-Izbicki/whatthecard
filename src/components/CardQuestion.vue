@@ -1,6 +1,6 @@
 <template>
-  <div class="cardQuestion">
-    <div>What's this card?</div>
+  <div class="w-full h-full sm:h-2/3 flex flex-col p-5">
+    <div class="text-3xl mb-5 font-bold">What's this card?</div>
     <RatioContainer :ratio="containerRatio">
       <Card :promised-card-data="promisedCardDatas[0]"></Card>
     </RatioContainer>
