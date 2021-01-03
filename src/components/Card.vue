@@ -6,10 +6,10 @@
     <div class="p-5 absolute-stretched"
          :class="{'opacity-0': showCard}">
       <div class="cardSkeleton stretched relative flex flex-col items-center">
-        <div class="cardTitleSkeleton"></div>
+<!--        <div class="cardTitleSkeleton"></div>-->
         <div v-if="!cardData" class="cardImageSkeleton"></div>
         <img v-else class="cardImageSkeleton" :src="cardData.image_uris.art_crop">
-        <div class="cardSubtitleSkeleton"></div>
+<!--        <div class="cardSubtitleSkeleton"></div>-->
       </div>
     </div>
   </div>

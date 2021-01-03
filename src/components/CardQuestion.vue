@@ -1,5 +1,5 @@
 <template>
-  <div class="stretched-content-centered flex-col">
+  <div class="cardQuestion">
     <div>What's this card?</div>
     <RatioContainer :ratio="containerRatio">
       <Card :promised-card-data="promisedCardDatas[0]"></Card>

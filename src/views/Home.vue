@@ -1,6 +1,5 @@
 <template>
-  <div class="stretched-content-centered flex-col">
-    What's this card?
+  <div class="stretched">
     <CardQuestion :promised-card-datas="promisedCardData"></CardQuestion>
   </div>
 </template>

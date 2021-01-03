@@ -44,6 +44,10 @@ html, body, #app {
   @apply absolute top-0 right-0 left-0 bottom-0;
 }
 
+.cardQuestion {
+  height: (88 * 5.7) + px;
+}
+
 .cardShape {
   border-radius: 4.2%/3%;
   @apply shadow-2xl;
