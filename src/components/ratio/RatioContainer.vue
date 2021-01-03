@@ -1,7 +1,7 @@
 <template>
   <div ref="container"
        class="stretched relative">
-    <div class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
+    <div class="absolute-stretched flex items-center justify-center">
       <div class="relative flex flex-col"
            :style="[{width: `${dimensions.width}px`},
                     {height: `${dimensions.height}px`},

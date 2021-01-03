@@ -40,12 +40,13 @@ html, body, #app {
   @apply flex items-center justify-center;
 }
 
-.cardContainer {
-  @apply cardShape shadow-2xl;
+.absolute-stretched {
+  @apply absolute top-0 right-0 left-0 bottom-0;
 }
 
 .cardShape {
   border-radius: 4.2%/3%;
+  @apply shadow-2xl;
 }
 
 .darkBackground {
