@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="stretched-content-centered flex-col">
     <Card :promised-card-data="promisedCardDatas[0]"></Card>
     <QuestionButtons :promised-card-datas="promisedCardDatas"></QuestionButtons>
   </div>
@@ -20,7 +20,3 @@ export default class CardQuestion extends Vue {
   private promisedCardDatas!: PromisedCardData[];
 }
 </script>
-
-<style scoped>
-
-</style>

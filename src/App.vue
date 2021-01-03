@@ -26,11 +26,13 @@
   }
 }
 
-html,
-body,
-#app {
+html, body, #app {
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
+}
+
+.stretched {
+  @apply h-full w-full;
 }
 
 .stretched-content-centered {
@@ -39,17 +41,11 @@ body,
 }
 
 .cardContainer {
-  @apply cardShape relative m-5 shadow-2xl;
+  @apply cardShape shadow-2xl;
 }
 
 .cardShape {
-  height: (88 * 7) + px;
-  width: (63 * 7) + px;
-  border-radius: 0.85rem;
-}
-
-.cardSkeletonContainer {
-  @apply absolute top-0;
+  border-radius: 4.2%/3%;
 }
 
 .darkBackground {
@@ -65,14 +61,13 @@ body,
 }
 
 .cardSkeleton {
-  @apply relative top-0 darkBackground cardShape;
-  @apply flex flex-col items-center;
+  @apply darkBackground cardShape;
   //@apply opacity-75;
 }
 
-.cardSkeleton:hover {
-  @apply darkBackgroundFocus;
-}
+//.cardSkeleton:hover {
+//  @apply darkBackgroundFocus;
+//}
 
 .skeletonHighlightBg {
   background: #5f5f5f;

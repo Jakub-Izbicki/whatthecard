@@ -1,5 +1,5 @@
 <template>
-  <div class="stretched-content-centered flex-col">
+  <div>
     <QuestionButton v-for="(promisedCardData, i) in promisedCardDatas"
                     :key="i"
                     :promised-card-data="promisedCardData">
