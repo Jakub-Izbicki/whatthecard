@@ -1,9 +1,7 @@
 <template>
-  <div class="w-full h-full sm:h-2/3 flex flex-col p-5">
+  <div class="w-full sm:w-96 h-full sm:h-2/3 p-5">
     <div class="text-3xl mb-5 font-bold">What's this card?</div>
-    <RatioContainer :ratio="containerRatio">
-      <Card :promised-card-data="promisedCardDatas[0]"></Card>
-    </RatioContainer>
+    <Card :promised-card-data="promisedCardDatas[0]"></Card>
     <QuestionButtons :promised-card-datas="promisedCardDatas"></QuestionButtons>
   </div>
 </template>
