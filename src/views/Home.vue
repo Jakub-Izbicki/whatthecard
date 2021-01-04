@@ -1,5 +1,6 @@
 <template>
   <div class="stretched flex flex-col justify-center items-center">
+    <div class="text-5xl py-5 font-fancy">whatTheCard !?</div>
     <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
   </div>
 </template>

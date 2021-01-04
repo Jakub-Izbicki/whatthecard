@@ -6,6 +6,9 @@ module.exports = {
             },
             colors: {
                 dark: "#363636"
+            },
+            fontFamily: {
+                'fancy': ['FancyFont', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
             }
         }
     },

@@ -31,6 +31,13 @@ html, body, #app {
   overflow: auto;
 }
 
+@font-face {
+  font-family: 'FancyFont';
+  src: url('./assets/Raphtalia-2ZmK.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .stretched {
   @apply h-full w-full;
 }
