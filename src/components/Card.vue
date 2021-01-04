@@ -4,17 +4,19 @@
        :style="{'height': height + 'px'}"
        @click="toggleShowCard">
 
-    <img v-if="cardData"
-         class="cardShape stretched" :src="cardData.image_uris.large">
+    <img v-if="cardData.length"
+         class="cardShape stretched" :src="cardData[0].image_uris.large">
 
     <div class="absolute-stretched"
          :class="{'opacity-0': showCard}">
       <div class="cardSkeleton stretched relative flex flex-col items-center">
-        <!--        <div class="cardTitleSkeleton"></div>-->
-        <div v-if="!cardData" class="cardImageSkeleton"></div>
-        <img v-else class="cardImageSkeleton" :src="cardData.image_uris.art_crop">
-        <!--        <div class="cardSubtitleSkeleton"></div>-->
+        <div v-if="!cardData.length" class="cardImageSkeleton"></div>
+        <img v-else class="cardImageSkeleton" :src="cardData[0].image_uris.art_crop">
       </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 p-4">
+      <QuestionButtons :promised-card-datas="promisedCardDatas"></QuestionButtons>
     </div>
   </div>
 </template>
@@ -23,14 +25,17 @@
 import {Component, Prop, Vue} from "vue-property-decorator"
 import PromisedCardData from "@/domain/PromisedCardData";
 import CardData from "@/domain/CardData";
+import QuestionButtons from "@/components/QuestionButtons.vue";
 
-@Component
+@Component({
+  components: {QuestionButtons}
+})
 export default class Card extends Vue {
 
-  @Prop({required: true, type: PromisedCardData})
-  private promisedCardData!: PromisedCardData;
+  @Prop({required: true})
+  private promisedCardDatas!: PromisedCardData[];
 
-  private cardData: CardData | null = null;
+  private cardData: CardData[] = [];
 
   private showCard = false;
 
@@ -43,10 +48,11 @@ export default class Card extends Vue {
   }
 
   mounted() {
-    this.promisedCardData.get().then(data => {
-      // console.info(data)
-      this.cardData = data
-    });
+    Promise.all(this.promisedCardDatas.map(data => data.get()))
+        .then(data => {
+          // console.info(data)
+          this.cardData = data
+        });
 
     /* eslint-disable */
     // @ts-ignore

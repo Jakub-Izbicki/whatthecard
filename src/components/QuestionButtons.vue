@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center">
     <QuestionButton v-for="(promisedCardData, i) in promisedCardDatas"
                     :key="i"
-                    :promised-card-data="promisedCardData">
+                    :promised-card-data="promisedCardData" :numeral="i + 1">
     </QuestionButton>
   </div>
 </template>

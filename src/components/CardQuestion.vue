@@ -1,8 +1,7 @@
 <template>
   <div class="w-full sm:w-96 h-full sm:h-2/3 p-5">
     <div class="text-3xl mb-5 font-bold">What's this card?</div>
-    <Card :promised-card-data="promisedCardDatas[0]"></Card>
-    <QuestionButtons :promised-card-datas="promisedCardDatas"></QuestionButtons>
+    <Card :promised-card-datas="promisedCardDatas"></Card>
   </div>
 </template>
 
@@ -12,7 +11,6 @@ import Card from "@/components/Card.vue";
 import PromisedCardData from "@/domain/PromisedCardData";
 import QuestionButtons from "@/components/QuestionButtons.vue";
 import RatioContainer from "@/components/ratio/RatioContainer.vue";
-import {RatioConstants} from "@/domain/ratio/Ratio";
 
 @Component({
   components: {RatioContainer, QuestionButtons, Card}
@@ -21,7 +19,5 @@ export default class CardQuestion extends Vue {
 
   @Prop({required: true})
   private promisedCardDatas!: PromisedCardData[];
-
-  private containerRatio = RatioConstants.RATIO_63_88;
 }
 </script>

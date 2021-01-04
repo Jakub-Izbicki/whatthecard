@@ -18,10 +18,13 @@ export default class QuestionButton extends Vue {
   @Prop({required: true, type: PromisedCardData})
   private promisedCardData!: PromisedCardData;
 
+  @Prop({required: true, type: Number})
+  private numeral!: number;
+
   private cardData: CardData | null = null;
 
   get name() {
-    return this.cardData?.name;
+    return `${this.numeral}. ${this.cardData?.name} ?`;
   }
 
   mounted() {
