@@ -1,5 +1,5 @@
 <template>
-  <div class="stretched">
+  <div class="stretched flex flex-col items-center justify-center">
     <CardQuestion :promised-card-datas="promisedCardData"></CardQuestion>
   </div>
 </template>

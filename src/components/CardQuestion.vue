@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full sm:w-96 h-full sm:h-2/3 p-5">
-    <div class="text-3xl mb-5 font-bold">What's this card?</div>
+  <div class="w-full sm:w-96 p-5">
+    <div class="text-3xl pb-5 font-bold">What's this card?</div>
     <Card :promised-card-datas="promisedCardDatas"></Card>
   </div>
 </template>
