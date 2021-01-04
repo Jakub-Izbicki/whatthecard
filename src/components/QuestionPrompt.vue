@@ -30,13 +30,13 @@ export default class QuestionPrompt extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 .fade-enter-active, .fade-leave-active {
   transition: opacity .2s, transform .2s;
 }
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
-  transform: scale(0.5, 0.5);
+  transform: translateY(-50%);
 }
 </style>

@@ -1,16 +1,16 @@
 <template>
   <div class="flex flex-col items-center">
-    <QuestionButton v-for="(promisedCardData, i) in promisedCardDatas"
+    <QuestionButton v-for="(cardData, i) in cardDatas"
                     :key="i"
-                    :promised-card-data="promisedCardData" :numeral="i + 1">
+                    :card-data="cardData" :numeral="i + 1">
     </QuestionButton>
   </div>
 </template>
 
 <script lang="ts">
 import {Vue, Component, Prop} from "vue-property-decorator"
-import PromisedCardData from "../domain/PromisedCardData";
 import QuestionButton from "@/components/QuestionButton.vue";
+import CardData from "@/domain/CardData";
 
 @Component({
   components: {QuestionButton}
@@ -18,7 +18,7 @@ import QuestionButton from "@/components/QuestionButton.vue";
 export default class QuestionButtons extends Vue {
 
   @Prop({required: true})
-  private promisedCardDatas!: PromisedCardData[];
+  private cardDatas!: CardData[];
 }
 </script>
 
