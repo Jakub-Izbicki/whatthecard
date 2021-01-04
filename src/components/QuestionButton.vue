@@ -1,6 +1,6 @@
 <template>
   <b-button rounded type="is-dark is-large">
-    <span>{{ `${numeral}. ` }}</span><span class="font-bold">{{ cardData.name }}</span>
+    <span class="font-fancy">{{ `${numeral}. ` }}</span><span>{{ cardData.name }}</span>
   </b-button>
 </template>
 
