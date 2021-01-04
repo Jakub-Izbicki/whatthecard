@@ -2,10 +2,12 @@
   <div class="w-full sm:w-96 p-5">
     <QuestionPrompt :answer-sync.sync="questionState"></QuestionPrompt>
 
-    <Card v-if="dataReady" :card-datas="cardDatas"></Card>
-    <b-progress v-else :value="cardsReady / cardsCount * 100" show-value>
-      {{ `${cardsReady} / ${cardsCount}` }}
-    </b-progress>
+    <transition name="card-and-progress-bar" mode="out-in" appear>
+      <Card v-if="dataReady" :card-datas="cardDatas"></Card>
+      <b-progress v-else :value="cardsReady / cardsCount * 100" show-value>
+        {{ `${cardsReady} / ${cardsCount}` }}
+      </b-progress>
+    </transition>
   </div>
 </template>
 
@@ -65,3 +67,14 @@ export default class CardQuestion extends Vue {
   }
 }
 </script>
+
+<style>
+.card-and-progress-bar-enter-active, .card-and-progress-bar-leave-active {
+  transition: opacity .2s, transform .2s;
+}
+
+.card-and-progress-bar-enter, .card-and-progress-bar-leave-to {
+  opacity: 0;
+  transform: scale(0.5, 0.5);
+}
+</style>

@@ -7,7 +7,7 @@ export default class Scryfall {
 
     private static ONCE = 1;
 
-    private static PER_200_MS = 100;
+    private static PER_200_MS = 200;
 
     public static throttledFetch = throttledQueue(Scryfall.ONCE, Scryfall.PER_200_MS);
 
