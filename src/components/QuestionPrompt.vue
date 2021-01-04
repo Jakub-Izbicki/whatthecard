@@ -7,6 +7,9 @@
       <div v-else-if="answer === incorrect" key="incorrect">
         Not even close!
       </div>
+      <div v-else-if="answer === loading" key="incorrect">
+        Fetching cards..
+      </div>
       <div v-else key="unanswered">
         What's this card?
       </div>
@@ -16,17 +19,19 @@
 
 <script lang="ts">
 import {Vue, Component, PropSync} from "vue-property-decorator"
-import {Answer} from "@/domain/CardData";
+import {QuestionState} from "@/domain/CardData";
 
 @Component
 export default class QuestionPrompt extends Vue {
 
   @PropSync("answerSync")
-  private answer!: Answer;
+  private answer!: QuestionState;
 
-  private correct = Answer.CORRECT;
+  private loading = QuestionState.LOADING;
 
-  private incorrect = Answer.INCORRECT;
+  private correct = QuestionState.CORRECT;
+
+  private incorrect = QuestionState.INCORRECT;
 }
 </script>
 

@@ -5,6 +5,6 @@ export default class CardData {
     }
 }
 
-export enum Answer {
-    UNANSWERED, CORRECT, INCORRECT
+export enum QuestionState {
+    LOADING, UNANSWERED, CORRECT, INCORRECT
 }

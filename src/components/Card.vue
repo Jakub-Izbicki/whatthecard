@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <transition name="fade" mode="out-in" appear>
+    <transition name="fade" mode="out-in">
       <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
         <img class="rounded-2xl" :src="cardDatas[0].image_uris.large"
              @click="toggleShowCard">
