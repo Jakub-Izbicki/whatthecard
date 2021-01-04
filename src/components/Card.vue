@@ -1,14 +1,17 @@
 <template>
-  <div class="bg-dark rounded-2xl shadow-card overflow-hidden">
-    <div v-if="showCard && dataReady">
-      <img class="rounded-2xl" :src="cardData[0].image_uris.large"
-           @click="toggleShowCard">
-    </div>
-    <div v-if="!showCard">
-      <img v-if="dataReady" class="rounded-t-2xl" :src="cardData[0].image_uris.art_crop"
-           @click="toggleShowCard">
-      <QuestionButtons v-if="!showCard" :promised-card-datas="promisedCardDatas"></QuestionButtons>
-    </div>
+  <div class="relative">
+    <transition name="fade" mode="out-in">
+      <div v-if="showCard && dataReady" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+        <img class="rounded-2xl" :src="cardData[0].image_uris.large"
+             @click="toggleShowCard">
+      </div>
+
+      <div v-if="!showCard && dataReady" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+        <img v-if="dataReady" class="rounded-t-2xl" :src="cardData[0].image_uris.art_crop"
+             @click="toggleShowCard">
+        <QuestionButtons v-if="!showCard" :promised-card-datas="promisedCardDatas"></QuestionButtons>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -60,3 +63,14 @@ export default class Card extends Vue {
   }
 }
 </script>
+
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s, transform .2s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  transform: scale(0.5, 0.5);
+}
+</style>
