@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="text-dark">
     <router-view/>
   </div>
 </template>
@@ -10,25 +10,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 
 html, body, #app {
   height: 100%;
   overflow: auto;
+
+  background: rgb(157,141,87);
+  background: linear-gradient(309deg, rgba(157,141,87,1) 14%, rgba(168,124,141,1) 52%, rgba(162,105,105,1) 100%);
 }
 
 @font-face {
