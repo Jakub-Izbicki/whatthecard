@@ -1,10 +1,14 @@
 <template>
   <div class="bg-dark rounded-2xl shadow-card overflow-hidden">
-    <img v-if="!showCard && dataReady" class="rounded-t-2xl" :src="cardData[0].image_uris.art_crop"
-         @click="toggleShowCard">
-    <img v-if="showCard && dataReady" class="rounded-2xl" :src="cardData[0].image_uris.large"
-         @click="toggleShowCard">
-    <QuestionButtons v-if="!showCard" :promised-card-datas="promisedCardDatas"></QuestionButtons>
+    <div v-if="showCard && dataReady">
+      <img class="rounded-2xl" :src="cardData[0].image_uris.large"
+           @click="toggleShowCard">
+    </div>
+    <div v-if="!showCard">
+      <img v-if="dataReady" class="rounded-t-2xl" :src="cardData[0].image_uris.art_crop"
+           @click="toggleShowCard">
+      <QuestionButtons v-if="!showCard" :promised-card-datas="promisedCardDatas"></QuestionButtons>
+    </div>
   </div>
 </template>
 
