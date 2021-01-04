@@ -1,5 +1,5 @@
 <template>
-  <div class="text-3xl pb-5 font-bold">
+  <div class="text-4xl font-fancy pb-3">
     <transition name="fade" mode="out-in" appear>
       <div v-if="answer === correct" key="correct">
         Success!
