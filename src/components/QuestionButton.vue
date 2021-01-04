@@ -1,9 +1,8 @@
 <template>
-  <b-button class="questionButton"
-            :loading="!cardData"
+  <b-button v-if="cardData"
             rounded
-            type="is-dark">
-    {{ name }}
+            type="is-dark is-large">
+    <span>{{ `${numeral}. ` }}</span><span class="font-bold">{{ cardData.name }}</span>
   </b-button>
 </template>
 
@@ -22,10 +21,6 @@ export default class QuestionButton extends Vue {
   private numeral!: number;
 
   private cardData: CardData | null = null;
-
-  get name() {
-    return `${this.numeral}. ${this.cardData?.name} ?`;
-  }
 
   mounted() {
     this.promisedCardData.get().then(data => this.cardData = data);
