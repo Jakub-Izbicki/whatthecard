@@ -4,7 +4,7 @@
 
     <transition name="card-and-progress-bar" mode="out-in" appear>
       <Card v-if="dataReady" :card-datas="cardDatas"></Card>
-      <b-progress v-else :value="cardsReady / cardsCount * 100" show-value>
+      <b-progress v-else :value="cardsReady / cardsCount * 100" show-value size="is-large">
         {{ `${cardsReady} / ${cardsCount}` }}
       </b-progress>
     </transition>

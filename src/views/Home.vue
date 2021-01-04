@@ -1,6 +1,5 @@
 <template>
-  <div class="stretched flex flex-col items-center">
-    <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
+  <div class="stretched flex flex-col justify-center items-center">
     <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
   </div>
 </template>
