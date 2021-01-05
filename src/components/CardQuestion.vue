@@ -1,9 +1,9 @@
 <template>
   <div class="w-full sm:w-96 p-5">
-    <QuestionPrompt :answer-sync.sync="questionState"></QuestionPrompt>
+    <QuestionPrompt :answer-sync.sync="getQuestionState"></QuestionPrompt>
 
     <transition name="card-and-progress-bar" mode="out-in" appear>
-      <Card v-if="dataReady" :card-datas="cardDatas"></Card>
+      <Card v-if="dataReady" :card-datas="cardDatas" @question-answered="setAnswer"></Card>
       <b-progress v-else :value="cardsReady / cardsCount * 100" show-value size="is-large">
         {{ `${cardsReady} / ${cardsCount}` }}
       </b-progress>
@@ -37,12 +37,14 @@ export default class CardQuestion extends Vue {
 
   private cardsReady = 0;
 
+  private questionState = QuestionState.UNANSWERED;
+
   get dataReady(): boolean {
     return !!this.cardDatas.length && !!this.cropImg && !!this.largeImg;
   }
 
-  get questionState(): QuestionState {
-    return this.dataReady ? QuestionState.UNANSWERED : QuestionState.LOADING;
+  get getQuestionState(): QuestionState {
+    return this.dataReady ? this.questionState : QuestionState.LOADING;
   }
 
   mounted() {
@@ -63,6 +65,11 @@ export default class CardQuestion extends Vue {
     largeImg.onload = () => this.largeImg = largeImg.src;
     cropImg.src = this.cardDatas[0].image_uris.art_crop;
     largeImg.src = this.cardDatas[0].image_uris.large;
+  }
+
+  private setAnswer(i: number): void {
+    console.info(i);
+    this.questionState = QuestionState.CORRECT;
   }
 }
 </script>

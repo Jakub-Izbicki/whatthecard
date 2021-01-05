@@ -9,7 +9,7 @@
       <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
         <img class="rounded-t-2xl" :src="cardDatas[0].image_uris.art_crop"
              @click="toggleShowCard">
-        <QuestionButtons :card-datas="cardDatas"></QuestionButtons>
+        <QuestionButtons :card-datas="cardDatas" v-on="$listeners"></QuestionButtons>
       </div>
     </transition>
   </div>

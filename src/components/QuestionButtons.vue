@@ -2,7 +2,8 @@
   <div class="flex flex-col items-center">
     <QuestionButton v-for="(cardData, i) in cardDatas"
                     :key="i"
-                    :card-data="cardData" :numeral="i + 1">
+                    :card-data="cardData" :numeral="i + 1"
+                    v-on="$listeners">
     </QuestionButton>
   </div>
 </template>
