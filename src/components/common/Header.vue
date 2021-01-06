@@ -9,7 +9,3 @@ import {Component, Vue} from "vue-property-decorator"
 export default class Header extends Vue {
 }
 </script>
-
-<style scoped>
-
-</style>

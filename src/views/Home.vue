@@ -1,24 +1,22 @@
 <template>
   <div class="stretched flex flex-col sm:flex-row justify-center items-center overflow-auto">
-    <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
+    <CardQuestion :question="fetchRandomCards()"></CardQuestion>
   </div>
 </template>
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
-import PromisedCardData from "@/domain/PromisedCardData";
 import CardQuestion from "@/components/CardQuestion.vue";
+import Question from "@/domain/Question";
 
 @Component({
   components: {CardQuestion}
 })
 export default class Home extends Vue {
 
-  private cards = [PromisedCardData.newRandom(), PromisedCardData.newRandom(), PromisedCardData.newRandom(), PromisedCardData.newRandom()];
 
-  private fetchRandomCards(): PromisedCardData[] {
-    // return [PromisedCardData.newRandom(), PromisedCardData.newRandom(), PromisedCardData.newRandom(), PromisedCardData.newRandom()];
-    return this.cards;
+  private fetchRandomCards(): Question {
+    return new Question();
   }
 }
 </script>

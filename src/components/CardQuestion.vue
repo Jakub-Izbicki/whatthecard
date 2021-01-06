@@ -31,10 +31,10 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from "vue-property-decorator"
-import PromisedCardData from "@/domain/PromisedCardData";
 import QuestionPrompt from "@/components/QuestionPrompt.vue";
 import CardData, {QuestionState} from "@/domain/CardData";
 import QuestionButton from "@/components/QuestionButton.vue";
+import Question from "@/domain/Question";
 
 @Component({
   components: {QuestionButton, QuestionPrompt}
@@ -42,7 +42,7 @@ import QuestionButton from "@/components/QuestionButton.vue";
 export default class CardQuestion extends Vue {
 
   @Prop({required: true})
-  private promisedCardDatas!: PromisedCardData[];
+  private question!: Question;
 
   private cardDatas: CardData[] = [];
 
@@ -50,7 +50,7 @@ export default class CardQuestion extends Vue {
 
   private largeImg: string | null = null;
 
-  private cardsCount = this.promisedCardDatas.length;
+  private cardsCount = this.question.promisedCardData.length;
 
   private cardsReady = 0;
 
@@ -65,10 +65,10 @@ export default class CardQuestion extends Vue {
   }
 
   mounted() {
-    this.promisedCardDatas.map(data => data.get())
+    this.question.promisedCardData.map(data => data.get())
         .forEach((promise) => promise.then(() => this.cardsReady++));
 
-    Promise.all(this.promisedCardDatas.map(data => data.get()))
+    Promise.all(this.question.promisedCardData.map(data => data.get()))
         .then(data => {
           this.cardDatas = data;
           this.preloadImages();
