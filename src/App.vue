@@ -1,10 +1,22 @@
 <template>
   <div id="app" class="text-dark">
-    <div class="text-5xl w-full bg-dark text-white py-2 font-fancy">whatTheCard !?</div>
+    <Header></Header>
     <router-view/>
-    <div class="text-5xl w-full bg-dark text-white py-2 font-fancy">whatTheCard !?</div>
+    <Footer></Footer>
   </div>
 </template>
+
+<script>
+import {Vue, Component} from "vue-property-decorator";
+import Header from "@/components/common/Header";
+import Footer from "@/components/common/Footer";
+
+@Component({
+  components: {Footer, Header}
+})
+export default class App extends Vue {
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -24,8 +36,8 @@ html {
 
 body {
   @apply min-h-full flex flex-col flex-shrink-0;
-  background: rgb(157,141,87);
-  background: linear-gradient(309deg, rgba(157,141,87,1) 14%, rgba(168,124,141,1) 52%, rgba(162,105,105,1) 100%);
+  background: rgb(157, 141, 87);
+  background: linear-gradient(309deg, rgba(157, 141, 87, 1) 14%, rgba(168, 124, 141, 1) 52%, rgba(162, 105, 105, 1) 100%);
 }
 
 #app {
