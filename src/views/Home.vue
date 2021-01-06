@@ -1,5 +1,5 @@
 <template>
-  <div class="stretched flex flex-col sm:flex-row justify-center items-center overflow-auto">
+  <div class="stretched flex flex-col sm:flex-row sm:flex-wrap justify-center items-center overflow-auto">
     <CardQuestion v-for="(question, i) in questions" :key="i" :question="question"
                   @question-answered="onQuestionAnswered">
     </CardQuestion>
