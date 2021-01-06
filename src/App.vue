@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="text-dark">
+    <div class="text-5xl w-full bg-dark text-white py-2 font-fancy">whatTheCard !?</div>
     <router-view/>
+    <div class="text-5xl w-full bg-dark text-white py-2 font-fancy">whatTheCard !?</div>
   </div>
 </template>
 
@@ -16,12 +18,18 @@
   box-sizing: border-box;
 }
 
-html, body, #app {
-  height: 100%;
-  overflow: auto;
+html {
+  @apply h-full flex flex-col overflow-auto;
+}
 
+body {
+  @apply min-h-full flex flex-col flex-shrink-0;
   background: rgb(157,141,87);
   background: linear-gradient(309deg, rgba(157,141,87,1) 14%, rgba(168,124,141,1) 52%, rgba(162,105,105,1) 100%);
+}
+
+#app {
+  @apply min-h-full flex flex-col flex-shrink-0;
 }
 
 @font-face {

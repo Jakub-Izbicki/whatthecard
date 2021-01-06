@@ -1,10 +1,7 @@
 <template>
   <div class="stretched flex flex-col justify-center items-center">
-    <div class="text-5xl w-full bg-dark text-white py-2 font-fancy">whatTheCard !?</div>
-    <div class="stretched flex flex-col justify-center items-center">
-      <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
-    </div>
-    <div class="text-5xl w-full bg-dark text-white py-2 font-fancy">whatTheCard !?</div>
+    <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
+    <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
   </div>
 </template>
 
