@@ -21,12 +21,17 @@ export default class Home extends Vue {
   private pendingQuestions: Question[] = [];
 
   mounted() {
-    this.questions = [new Question()];
+    const firstQuestion = new Question();
+    firstQuestion.fetchData();
+    this.questions = [firstQuestion];
     this.prepareNextQuestion();
   }
 
   private onQuestionAnswered(): void {
-    setTimeout(() => this.questions.push(...this.pendingQuestions), 1000);
+    const pendingQuestion = this.pendingQuestions[0];
+    // setTimeout(() => this.questions.push(pendingQuestion), 500);
+    this.questions.push(pendingQuestion);
+
     this.prepareNextQuestion();
   }
 

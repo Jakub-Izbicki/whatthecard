@@ -4,7 +4,7 @@ import {AxiosResponse} from "axios";
 
 export default class PromisedCardData {
 
-    private cardData: Promise<AxiosResponse<CardData>> | null = null;
+    private cardData: Promise<CardData> | null = null;
 
     constructor(private readonly prefetchImages: boolean) {
     }
@@ -14,19 +14,16 @@ export default class PromisedCardData {
     }
 
     public get(): Promise<CardData> {
-        this.fetch();
-        return (this.cardData as Promise<AxiosResponse<CardData>>)
-            .then(response => this.preloadImages(response))
-            .then(response => response.data);
-    }
-
-    private fetch(): void {
-        if (!this.cardData) {
-            const fetch = Scryfall.fetch(ScryfallRequest.forRandomCard());
-            fetch.catch(error => console.error(error));
-
-            this.cardData = fetch;
+        if (this.cardData) {
+            return this.cardData;
         }
+
+        const scryfallFetch = Scryfall.fetch(ScryfallRequest.forRandomCard());
+        scryfallFetch.catch(error => console.error(error));
+
+        this.cardData = scryfallFetch.then(response => this.preloadImages(response))
+            .then(response => response.data);
+        return this.cardData;
     }
 
     private async preloadImages(response: AxiosResponse<CardData>): Promise<AxiosResponse<CardData>> {
