@@ -77,6 +77,7 @@ export default class CardQuestion extends Vue {
       this.question.state = QuestionState.INCORRECT;
     }
     this.showCard = true;
+    this.$emit('question-answered');
   }
 }
 </script>
