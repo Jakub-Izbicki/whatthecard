@@ -15,12 +15,11 @@
 import {Component, Prop, Vue} from "vue-property-decorator"
 import Card from "@/components/Card.vue";
 import PromisedCardData from "@/domain/PromisedCardData";
-import QuestionButtons from "@/components/QuestionButtons.vue";
 import QuestionPrompt from "@/components/QuestionPrompt.vue";
 import CardData, {QuestionState} from "@/domain/CardData";
 
 @Component({
-  components: {QuestionPrompt, QuestionButtons, Card}
+  components: {QuestionPrompt, Card}
 })
 export default class CardQuestion extends Vue {
 

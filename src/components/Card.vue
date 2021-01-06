@@ -9,7 +9,13 @@
       <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
         <img class="rounded-t-2xl" :src="cardDatas[0].image_uris.art_crop"
              @click="toggleShowCard">
-        <QuestionButtons :card-datas="cardDatas" v-on="$listeners"></QuestionButtons>
+        <div class="flex flex-col items-center">
+          <QuestionButton v-for="(cardData, i) in cardDatas"
+                          :key="i"
+                          :card-data="cardData" :numeral="i + 1"
+                          v-on="$listeners">
+          </QuestionButton>
+        </div>
       </div>
     </transition>
   </div>
@@ -18,10 +24,10 @@
 <script lang="ts">
 import {Component, Prop, Vue} from "vue-property-decorator"
 import CardData from "@/domain/CardData";
-import QuestionButtons from "@/components/QuestionButtons.vue";
+import QuestionButton from "@/components/QuestionButton.vue";
 
 @Component({
-  components: {QuestionButtons}
+  components: {QuestionButton}
 })
 export default class Card extends Vue {
 
