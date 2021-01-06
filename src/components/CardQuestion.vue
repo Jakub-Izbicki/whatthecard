@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sm:w-96 p-5">
+  <div class="w-full sm:w-96 p-5 flex-shrink-0">
     <QuestionPrompt :answer-sync.sync="getQuestionState"></QuestionPrompt>
 
     <transition name="card-and-progress-bar" mode="out-in" appear>

@@ -1,5 +1,6 @@
 <template>
-  <div class="stretched flex flex-col justify-center items-center">
+  <div class="stretched flex flex-col sm:flex-row justify-center items-center overflow-auto">
+    <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
     <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
     <CardQuestion :promised-card-datas="fetchRandomCards()"></CardQuestion>
   </div>
