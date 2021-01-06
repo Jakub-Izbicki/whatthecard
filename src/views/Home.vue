@@ -16,12 +16,8 @@ export default class Home extends Vue {
 
   private questions: Question[] = [];
 
-  private fetchRandomCards(): Question {
-    return new Question();
-  }
-
   mounted() {
-    this.questions = [this.fetchRandomCards(), this.fetchRandomCards()];
+    this.questions = [new Question()];
   }
 }
 </script>

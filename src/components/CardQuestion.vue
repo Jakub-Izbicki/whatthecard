@@ -6,13 +6,11 @@
       <div v-if="dataReady" class="relative">
         <transition name="scale-transition" mode="out-in">
           <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
-            <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large"
-                 @click="toggleShowCard">
+            <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
           </div>
 
           <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
-            <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop"
-                 @click="toggleShowCard">
+            <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop">
             <div class="flex flex-col items-center">
               <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
                               @question-answered="setAnswer">
@@ -46,6 +44,8 @@ export default class CardQuestion extends Vue {
 
   private cardsCount = this.question.promisedCardData.length;
 
+  private showCard = false;
+
   get dataReady(): boolean {
     return !!this.cardDatas.length;
   }
@@ -76,12 +76,7 @@ export default class CardQuestion extends Vue {
     } else {
       this.question.state = QuestionState.INCORRECT;
     }
-  }
-
-  private showCard = false;
-
-  private toggleShowCard(): void {
-    this.showCard = !this.showCard;
+    this.showCard = true;
   }
 }
 </script>
