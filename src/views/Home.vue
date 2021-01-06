@@ -1,6 +1,6 @@
 <template>
   <div class="stretched flex flex-col sm:flex-row justify-center items-center overflow-auto">
-    <CardQuestion :question="fetchRandomCards()"></CardQuestion>
+    <CardQuestion v-for="(q, i) in questions" :key="i" :question="q"></CardQuestion>
   </div>
 </template>
 
@@ -14,9 +14,14 @@ import Question from "@/domain/Question";
 })
 export default class Home extends Vue {
 
+  private questions: Question[] = [];
 
   private fetchRandomCards(): Question {
     return new Question();
+  }
+
+  mounted() {
+    this.questions = [this.fetchRandomCards(), this.fetchRandomCards()];
   }
 }
 </script>

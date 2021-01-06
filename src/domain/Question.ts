@@ -9,14 +9,28 @@ export default class Question {
 
     public readonly promisedCardData: PromisedCardData[];
 
+    public cardData: CardData[] = [];
+
+    public cardDatasReady = 0;
+
     public state = QuestionState.UNANSWERED;
 
     constructor() {
         this.correctAnswer = 0;
-        this.promisedCardData = [...new Array(Question.ANSWERS_COUNT).keys()].map(() => PromisedCardData.newRandom());
+        this.promisedCardData = [...new Array(Question.ANSWERS_COUNT).keys()].map((i) => {
+            if (i === this.correctAnswer) {
+                return PromisedCardData.newRandom(true);
+            } else {
+                return PromisedCardData.newRandom();
+            }
+        });
     }
 
     public fetchData(): void {
-        this.promisedCardData.forEach(d => d.fetch());
+        this.promisedCardData.map(data => data.get())
+            .forEach((promise) => promise.then(() => this.cardDatasReady++));
+
+        Promise.all(this.promisedCardData.map(data => data.get()))
+            .then(data => this.cardData = data);
     }
 }

@@ -1,17 +1,17 @@
 <template>
   <div class="w-full sm:w-96 p-5 flex-shrink-0">
-    <QuestionPrompt :answer-sync.sync="getQuestionState"></QuestionPrompt>
+    <QuestionPrompt :answer-sync.sync="state"></QuestionPrompt>
 
     <transition name="scale-transition" mode="out-in" appear>
       <div v-if="dataReady" class="relative">
         <transition name="scale-transition" mode="out-in">
           <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
-            <img class="rounded-2xl" :src="cardDatas[0].image_uris.large"
+            <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large"
                  @click="toggleShowCard">
           </div>
 
           <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
-            <img class="rounded-t-2xl" :src="cardDatas[0].image_uris.art_crop"
+            <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop"
                  @click="toggleShowCard">
             <div class="flex flex-col items-center">
               <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
@@ -44,51 +44,38 @@ export default class CardQuestion extends Vue {
   @Prop({required: true})
   private question!: Question;
 
-  private cardDatas: CardData[] = [];
-
-  private cropImg: string | null = null;
-
-  private largeImg: string | null = null;
-
   private cardsCount = this.question.promisedCardData.length;
 
-  private cardsReady = 0;
-
-  private questionState = QuestionState.UNANSWERED;
-
   get dataReady(): boolean {
-    return !!this.cardDatas.length && !!this.cropImg && !!this.largeImg;
+    return !!this.cardDatas.length;
   }
 
-  get getQuestionState(): QuestionState {
-    return this.dataReady ? this.questionState : QuestionState.LOADING;
+  get cardDatas(): CardData[] {
+    return this.question.cardData;
+  }
+
+  get cardsReady(): number {
+    return this.question.cardDatasReady;
+  }
+
+  get state(): QuestionState {
+    return this.dataReady ? this.question.state : QuestionState.LOADING;
+  }
+
+  get correctAnswer(): number {
+    return this.question.correctAnswer;
   }
 
   mounted() {
-    this.question.promisedCardData.map(data => data.get())
-        .forEach((promise) => promise.then(() => this.cardsReady++));
-
-    Promise.all(this.question.promisedCardData.map(data => data.get()))
-        .then(data => {
-          this.cardDatas = data;
-          this.preloadImages();
-        });
-  }
-
-  private preloadImages(): void {
-    const cropImg = new Image();
-    const largeImg = new Image();
-    cropImg.onload = () => this.cropImg = cropImg.src;
-    largeImg.onload = () => this.largeImg = largeImg.src;
-    // @ts-ignore
-    cropImg.src = this.cardDatas[0].image_uris.art_crop;
-    // @ts-ignore
-    largeImg.src = this.cardDatas[0].image_uris.large;
+    this.question.fetchData();
   }
 
   private setAnswer(i: number): void {
-    console.info(i);
-    this.questionState = QuestionState.CORRECT;
+    if (i === this.correctAnswer) {
+      this.question.state = QuestionState.CORRECT;
+    } else {
+      this.question.state = QuestionState.INCORRECT;
+    }
   }
 
   private showCard = false;
