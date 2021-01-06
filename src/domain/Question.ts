@@ -15,6 +15,8 @@ export default class Question {
 
     public state = QuestionState.UNANSWERED;
 
+    private fetched = false;
+
     constructor() {
         this.correctAnswer = 0;
         this.promisedCardData = [...new Array(Question.ANSWERS_COUNT).keys()].map((i) => {
@@ -27,10 +29,14 @@ export default class Question {
     }
 
     public fetchData(): void {
-        this.promisedCardData.map(data => data.get())
-            .forEach((promise) => promise.then(() => this.cardDatasReady++));
+        if (!this.fetched) {
+            this.fetched = true;
 
-        Promise.all(this.promisedCardData.map(data => data.get()))
-            .then(data => this.cardData = data);
+            this.promisedCardData.map(data => data.get())
+                .forEach((promise) => promise.then(() => this.cardDatasReady++));
+
+            Promise.all(this.promisedCardData.map(data => data.get()))
+                .then(data => this.cardData = data);
+        }
     }
 }
