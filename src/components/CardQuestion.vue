@@ -2,8 +2,26 @@
   <div class="w-full sm:w-96 p-5 flex-shrink-0">
     <QuestionPrompt :answer-sync.sync="getQuestionState"></QuestionPrompt>
 
-    <transition name="card-and-progress-bar" mode="out-in" appear>
-      <Card v-if="dataReady" :card-datas="cardDatas" @question-answered="setAnswer"></Card>
+    <transition name="scale-transition" mode="out-in" appear>
+      <div v-if="dataReady" class="relative">
+        <transition name="scale-transition" mode="out-in">
+          <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+            <img class="rounded-2xl" :src="cardDatas[0].image_uris.large"
+                 @click="toggleShowCard">
+          </div>
+
+          <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+            <img class="rounded-t-2xl" :src="cardDatas[0].image_uris.art_crop"
+                 @click="toggleShowCard">
+            <div class="flex flex-col items-center">
+              <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
+                              @question-answered="setAnswer">
+              </QuestionButton>
+            </div>
+          </div>
+        </transition>
+      </div>
+
       <b-progress v-else :value="cardsReady / cardsCount * 100" show-value size="is-large">
         {{ `${cardsReady} / ${cardsCount}` }}
       </b-progress>
@@ -13,13 +31,13 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from "vue-property-decorator"
-import Card from "@/components/Card.vue";
 import PromisedCardData from "@/domain/PromisedCardData";
 import QuestionPrompt from "@/components/QuestionPrompt.vue";
 import CardData, {QuestionState} from "@/domain/CardData";
+import QuestionButton from "@/components/QuestionButton.vue";
 
 @Component({
-  components: {QuestionPrompt, Card}
+  components: {QuestionButton, QuestionPrompt}
 })
 export default class CardQuestion extends Vue {
 
@@ -62,7 +80,9 @@ export default class CardQuestion extends Vue {
     const largeImg = new Image();
     cropImg.onload = () => this.cropImg = cropImg.src;
     largeImg.onload = () => this.largeImg = largeImg.src;
+    // @ts-ignore
     cropImg.src = this.cardDatas[0].image_uris.art_crop;
+    // @ts-ignore
     largeImg.src = this.cardDatas[0].image_uris.large;
   }
 
@@ -70,15 +90,30 @@ export default class CardQuestion extends Vue {
     console.info(i);
     this.questionState = QuestionState.CORRECT;
   }
+
+  private showCard = false;
+
+  private toggleShowCard(): void {
+    this.showCard = !this.showCard;
+  }
 }
 </script>
 
 <style>
-.card-and-progress-bar-enter-active, .card-and-progress-bar-leave-active {
+.scale-transition-enter-active, .scale-transition-leave-active {
   transition: opacity .2s, transform .2s;
 }
 
-.card-and-progress-bar-enter, .card-and-progress-bar-leave-to {
+.scale-transition-enter, .scale-transition-leave-to {
+  opacity: 0;
+  transform: scale(0.5, 0.5);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s, transform .2s;
+}
+
+.fade-enter, .fade-leave-to {
   opacity: 0;
   transform: scale(0.5, 0.5);
 }
