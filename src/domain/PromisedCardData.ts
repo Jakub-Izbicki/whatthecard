@@ -30,6 +30,7 @@ export default class PromisedCardData {
         return new Promise<AxiosResponse<CardData>>(resolve => {
             if (this.prefetchImages) {
                 Promise.all([
+                    //todo: sometimes throws npe: cannot read art_crop of undefined -> add some additional error handling
                     // @ts-ignore
                     this.fetchImage(response.data.image_uris.art_crop),
                     // @ts-ignore
