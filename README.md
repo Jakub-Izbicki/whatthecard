@@ -1,4 +1,4 @@
-# slicer2
+# whatthecard
 
 ## Project setup
 ```
