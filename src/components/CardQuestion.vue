@@ -84,11 +84,11 @@ export default class CardQuestion extends Vue {
 
 <style>
 .scale-transition-enter-active, .scale-transition-leave-active {
-  transition: opacity .2s, transform .2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .scale-transition-enter, .scale-transition-leave-to {
   opacity: 0;
-  transform: scale(0, 0);
+  transform: scale(0.5, 0.5);
 }
 </style>

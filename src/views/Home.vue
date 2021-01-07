@@ -46,7 +46,7 @@ export default class Home extends Vue {
 
 <style scoped>
 .questions-item {
-  transition: all 0.4s;
+  transition: opacity 0.5s, transform 0.5s;
 }
 
 .questions-enter, .questions-leave-to {
