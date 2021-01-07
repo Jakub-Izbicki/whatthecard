@@ -27,5 +27,5 @@ heroku git:remote -a what-the-card
 
 ### 2. Push code to heroku app repo (deploys immediately):
 ```
-heroku git:remote -a what-the-card
+git push heroku master
 ```
