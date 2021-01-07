@@ -1,9 +1,10 @@
 <template>
-  <div class="stretched flex flex-col sm:flex-row sm:flex-wrap justify-center items-center overflow-auto">
-    <CardQuestion v-for="(question, i) in questions" :key="i" :question="question"
-                  @question-answered="onQuestionAnswered">
-    </CardQuestion>
-  </div>
+    <transition-group tag="div" name="questions"
+                      class="stretched flex flex-col sm:flex-row sm:flex-wrap justify-center items-center overflow-auto">
+      <CardQuestion v-for="(question, i) in questions" :key="i" :question="question" class="questions-item"
+                    @question-answered="onQuestionAnswered">
+      </CardQuestion>
+    </transition-group>
 </template>
 
 <script lang="ts">
@@ -42,3 +43,14 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.questions-item {
+  transition: all 0.4s;
+}
+
+.questions-enter, .questions-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+</style>
