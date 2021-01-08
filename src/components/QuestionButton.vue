@@ -1,5 +1,5 @@
 <template>
-  <b-button rounded type="is-dark is-large" @click="$emit('question-answered', numeral - 1)">
+  <b-button rounded type="is-dark m-1" @click="$emit('question-answered', numeral - 1)">
     <span class="font-fancy">{{ `${numeral}. ` }}</span><span>{{ cardData.name }}</span>
   </b-button>
 </template>
