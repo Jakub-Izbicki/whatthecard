@@ -14,7 +14,7 @@ export default class Scryfall {
     public static fetch(request: ScryfallRequest): Promise<AxiosResponse<CardData>> {
         return new Promise((resolve, reject) => {
             Scryfall.throttledFetch(() => {
-                const promise = axios.get(request.url);
+                const promise = axios.get(request.url + `?clearcache=${Math.random()}`);
                 promise.catch((error => reject(error)));
                 resolve(promise);
             });
