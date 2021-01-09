@@ -1,6 +1,7 @@
 import CardData from "@/domain/CardData";
 import Scryfall, {ScryfallRequest} from "@/domain/Scryfall";
 import {AxiosResponse} from "axios";
+import Errors from "@/domain/common/Errors";
 
 export default class PromisedCardData {
 
@@ -19,11 +20,18 @@ export default class PromisedCardData {
         }
 
         const scryfallFetch = Scryfall.fetch(ScryfallRequest.forRandomCard());
-        scryfallFetch.catch(error => console.error(error));
+        scryfallFetch.catch(this.handleErrors());
 
         this.cardData = scryfallFetch.then(response => this.preloadImages(response))
             .then(response => response.data);
         return this.cardData;
+    }
+
+    private handleErrors() {
+        return (error: any) => {
+            console.error(error);
+            Errors.getInstance().showError("Error occurred when fetching data");
+        }
     }
 
     private async preloadImages(response: AxiosResponse<CardData>): Promise<AxiosResponse<CardData>> {
