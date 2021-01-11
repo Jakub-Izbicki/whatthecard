@@ -26,7 +26,7 @@ export default class Scryfall {
 
 // todo: set full_art to false in request
 // todo: non-tokens?
-// todo: ass selecting card type
+// todo: add selecting card type
 export class ScryfallRequest {
 
     private static RANDOM_CARD = "https://api.scryfall.com/cards/random";
