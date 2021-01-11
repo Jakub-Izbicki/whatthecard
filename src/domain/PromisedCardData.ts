@@ -1,7 +1,6 @@
 import CardData from "@/domain/CardData";
 import Scryfall, {ScryfallRequest} from "@/domain/Scryfall";
 import {AxiosResponse} from "axios";
-import Errors from "@/domain/common/Errors";
 import Repeat from "@/domain/common/Repeat";
 
 export default class PromisedCardData {

@@ -1,29 +1,34 @@
 <template>
   <div class="w-full sm:w-96 p-5 flex-shrink-0">
-    <QuestionPrompt :answer-sync.sync="state"></QuestionPrompt>
+    <template v-if="dataFetchFailure">
+      Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
+    </template>
+    <template v-else>
+      <QuestionPrompt :answer-sync.sync="state"></QuestionPrompt>
 
-    <transition name="scale-transition" mode="out-in" appear>
-      <div v-if="dataReady" class="relative">
-        <transition name="scale-transition" mode="out-in">
-          <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
-            <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
-          </div>
-
-          <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
-            <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop">
-            <div class="flex flex-col items-center">
-              <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
-                              @question-answered="setAnswer">
-              </QuestionButton>
+      <transition name="scale-transition" mode="out-in" appear>
+        <div v-if="dataReady" class="relative">
+          <transition name="scale-transition" mode="out-in">
+            <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+              <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
             </div>
-          </div>
-        </transition>
-      </div>
 
-      <b-progress v-else :value="cardsReady / cardsCount * 100" show-value size="is-large">
-        {{ `${cardsReady} / ${cardsCount}` }}
-      </b-progress>
-    </transition>
+            <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+              <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop">
+              <div class="flex flex-col items-center">
+                <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
+                                @question-answered="setAnswer">
+                </QuestionButton>
+              </div>
+            </div>
+          </transition>
+        </div>
+
+        <b-progress v-else :value="cardsReady / cardsCount * 100" show-value size="is-large">
+          {{ `${cardsReady} / ${cardsCount}` }}
+        </b-progress>
+      </transition>
+    </template>
   </div>
 </template>
 
@@ -45,6 +50,10 @@ export default class CardQuestion extends Vue {
   private cardsCount = this.question.promisedCardData.length;
 
   private showCard = false;
+
+  get dataFetchFailure(): boolean {
+    return this.question.cardDataFetchFailure;
+  }
 
   get dataReady(): boolean {
     return !!this.cardDatas.length;

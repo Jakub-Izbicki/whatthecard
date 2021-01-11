@@ -13,6 +13,8 @@ export default class Question {
 
     public cardDatasReady = 0;
 
+    public cardDataFetchFailure = false;
+
     public state = QuestionState.UNANSWERED;
 
     private fetched = false;
@@ -41,9 +43,11 @@ export default class Question {
 
             Promise.all(this.promisedCardData.map(data => data.get()))
                 .then(data => {
-                    const anyNull = data.some((cardData) => !cardData);
+                    const anyDataIncomplete = data.some((cardData) => !cardData);
 
-                    if (!anyNull) {
+                    if (anyDataIncomplete) {
+                        this.cardDataFetchFailure = true;
+                    } else {
                         this.cardData = data as CardData[];
                     }
                 });
