@@ -32,11 +32,21 @@ export default class Question {
         if (!this.fetched) {
             this.fetched = true;
 
-            this.promisedCardData.map(data => data.get())
-                .forEach((promise) => promise.then(() => this.cardDatasReady++));
+            this.promisedCardData.forEach((data) =>
+                data.get().then((cardData) => {
+                    if (cardData) {
+                        this.cardDatasReady++
+                    }
+                }));
 
             Promise.all(this.promisedCardData.map(data => data.get()))
-                .then(data => this.cardData = data);
+                .then(data => {
+                    const anyNull = data.some((cardData) => !cardData);
+
+                    if (!anyNull) {
+                        this.cardData = data as CardData[];
+                    }
+                });
         }
     }
 }

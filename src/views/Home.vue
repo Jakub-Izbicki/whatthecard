@@ -31,7 +31,6 @@ export default class Home extends Vue {
   private onQuestionAnswered(): void {
     const pendingQuestion = this.pendingQuestions[0];
     setTimeout(() => this.questions.push(pendingQuestion), 1000);
-    // this.questions.push(pendingQuestion);
 
     this.prepareNextQuestion();
   }

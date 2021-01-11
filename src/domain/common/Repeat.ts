@@ -13,13 +13,12 @@ export default class Repeat<T> {
 
         // on error, wait for specified delay time, and then retry call, up to max specified times
         [...new Array(this.repeatMax).keys()].forEach(() => called
-            .catch(this.wait())
-            .then(() => this.callable()));
+            .catch(() => this.wait().then(() => this.callable())));
 
         return called;
     }
 
     private wait() {
-        return () => new Promise((resolve => setTimeout(resolve, this.delayMs)));
+        return new Promise((resolve => setTimeout(resolve, this.delayMs)));
     }
 }
