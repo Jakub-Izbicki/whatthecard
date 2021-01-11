@@ -6,6 +6,10 @@ import Repeat from "@/domain/common/Repeat";
 
 export default class PromisedCardData {
 
+    private static REPEAT_REQUESTS = 1;
+
+    private static DELAY_BETWEEN_REPEATS = 1000;
+
     private cardData: Promise<CardData | null> | null = null;
 
     constructor(private readonly prefetchImages: boolean) {
@@ -26,8 +30,8 @@ export default class PromisedCardData {
                     .then(response => this.preloadImages(response))
                     .then(response => response.data);
             },
-            1,
-            2000)
+            PromisedCardData.REPEAT_REQUESTS,
+            PromisedCardData.DELAY_BETWEEN_REPEATS)
             .do()
             .catch(this.handleErrors());
 
