@@ -17,6 +17,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "three": "^0.124.0",
     "throttled-queue": "^1.0.7",
+    "uuid": "^8.3.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@eriktoyra/vue-cli-plugin-tailwindcss": "^1.1.1",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",

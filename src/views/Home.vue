@@ -1,7 +1,7 @@
 <template>
     <transition-group tag="div" name="questions"
                       class="stretched flex flex-col sm:flex-row sm:flex-wrap-reverse justify-center items-center overflow-auto">
-      <CardQuestion v-for="(question, i) in questions" :key="i" :question="question" class="questions-item"
+      <CardQuestion v-for="question in questions" :key="question.id" :question="question" class="questions-item"
                     @question-answered="onQuestionAnswered">
       </CardQuestion>
     </transition-group>

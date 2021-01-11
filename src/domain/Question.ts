@@ -1,9 +1,12 @@
 import PromisedCardData from "@/domain/PromisedCardData";
 import CardData, {QuestionState} from "@/domain/CardData";
+import {v4 as uuid4} from "uuid";
 
 export default class Question {
 
     private static readonly ANSWERS_COUNT = 4;
+
+    public readonly id: string;
 
     public readonly correctAnswer: number;
 
@@ -20,6 +23,7 @@ export default class Question {
     private fetched = false;
 
     constructor() {
+        this.id = uuid4();
         this.correctAnswer = 0;
         this.promisedCardData = [...new Array(Question.ANSWERS_COUNT).keys()].map((i) => {
             if (i === this.correctAnswer) {
