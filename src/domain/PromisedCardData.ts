@@ -68,9 +68,8 @@ export default class PromisedCardData {
 
     private handleErrors(): (error: unknown) => Promise<null> {
         return (error: unknown) => {
-            console.debug("Repeated call ended in failure!");
-            // console.debug(error);
-            Errors.getInstance().showError("Error when fetching card data. Please refresh page.");
+            const triesTotal = PromisedCardData.REPEAT_REQUESTS + 1;
+            console.debug(`Failed to get card data, after [${triesTotal}] tries, with error on last retry:`, error);
 
             return new Promise(resolve => resolve(null));
         }
