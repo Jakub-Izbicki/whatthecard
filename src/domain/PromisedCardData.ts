@@ -6,7 +6,7 @@ import Repeat from "@/domain/common/Repeat";
 
 export default class PromisedCardData {
 
-    private static REPEAT_REQUESTS = 1;
+    private static REPEAT_REQUESTS = 2;
 
     private static DELAY_BETWEEN_REPEATS = 1000;
 
