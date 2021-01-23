@@ -9,7 +9,8 @@
       <transition name="scale-transition" mode="out-in" appear>
         <div v-if="dataReady" class="relative">
           <transition name="scale-transition" mode="out-in">
-            <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+            <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl overflow-hidden"
+                 :class="[{'shadow-card-correct' : isCorrect}, {'shadow-card-incorrect' : !isCorrect}]">
               <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
             </div>
 
@@ -69,6 +70,10 @@ export default class CardQuestion extends Vue {
 
   get state(): QuestionState {
     return this.dataReady ? this.question.state : QuestionState.LOADING;
+  }
+
+  get isCorrect(): boolean {
+    return this.question.state == QuestionState.CORRECT;
   }
 
   get correctAnswer(): number {
