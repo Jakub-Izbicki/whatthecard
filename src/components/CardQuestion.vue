@@ -1,5 +1,6 @@
 <template>
-  <div class="w-full sm:w-96 p-5 flex-shrink-0">
+  <div class="w-full sm:w-96 p-5 flex-shrink-0"
+       :class="[{'-mt-96': isSquished}]">
     <template v-if="dataFetchFailure">
       Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
     </template>
@@ -80,6 +81,10 @@ export default class CardQuestion extends Vue {
 
   get correctAnswer(): number {
     return this.question.correctAnswer;
+  }
+
+  get isSquished(): boolean {
+    return this.question.squished;
   }
 
   mounted() {

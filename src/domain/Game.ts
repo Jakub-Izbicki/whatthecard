@@ -27,9 +27,6 @@ export default class Game {
     }
 
     public onQuestionAnswered(): void {
-        const pendingQuestion = this.pendingQuestions[0];
-        setTimeout(() => this.questions.push(pendingQuestion), 1000);
-
         this.prepareNextQuestion();
     }
 
@@ -41,8 +38,22 @@ export default class Game {
     }
 
     private prepareNextQuestion(): void {
-        const nextQuestion = new Question();
-        nextQuestion.fetchData();
-        this.pendingQuestions = [nextQuestion];
+        if (this.pendingQuestions.length) {
+            const nextQuestion = this.pendingQuestions[0];
+            setTimeout(() => {
+                this.questions.push(nextQuestion);
+                this.squishAllExceptTwoNewest();
+            }, 1000);
+        }
+
+        const nextPendingQuestion = new Question();
+        nextPendingQuestion.fetchData();
+        this.pendingQuestions = [nextPendingQuestion];
+    }
+
+    private squishAllExceptTwoNewest(): void {
+        if (this.questions.length > 2) {
+            this.questions[this.questions.length - 3].squished = true;
+        }
     }
 }
