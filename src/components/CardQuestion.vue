@@ -11,7 +11,9 @@
         <div v-if="dataReady" class="relative">
           <transition name="scale-transition" mode="out-in">
             <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl overflow-hidden"
-                 :class="[{'shadow-card-correct' : isCorrect}, {'shadow-card-incorrect' : !isCorrect}]">
+                 :class="[{'shadow-card-correct' : isCorrect && !isSquished},
+                 {'shadow-card-incorrect' : !isCorrect && !isSquished},
+                 {'shadow-card' : isSquished}]">
               <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
             </div>
 
