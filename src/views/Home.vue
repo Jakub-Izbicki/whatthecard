@@ -11,34 +11,21 @@
 import {Component, Vue} from "vue-property-decorator";
 import CardQuestion from "@/components/CardQuestion.vue";
 import Question from "@/domain/Question";
+import Game from "@/domain/Game";
 
 @Component({
   components: {CardQuestion}
 })
 export default class Home extends Vue {
 
-  private questions: Question[] = [];
+  private game = Game.newGame();
 
-  private pendingQuestions: Question[] = [];
-
-  mounted() {
-    const firstQuestion = new Question();
-    firstQuestion.fetchData();
-    this.questions = [firstQuestion];
-    this.prepareNextQuestion();
+  get questions(): Question[] {
+    return this.game.getQuestions;
   }
 
   private onQuestionAnswered(): void {
-    const pendingQuestion = this.pendingQuestions[0];
-    setTimeout(() => this.questions.push(pendingQuestion), 1000);
-
-    this.prepareNextQuestion();
-  }
-
-  private prepareNextQuestion(): void {
-    const nextQuestion = new Question();
-    nextQuestion.fetchData();
-    this.pendingQuestions = [nextQuestion];
+    this.game.onQuestionAnswered();
   }
 }
 </script>
