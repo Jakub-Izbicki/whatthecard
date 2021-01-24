@@ -1,6 +1,6 @@
 <template>
   <div class="w-full sm:w-96 p-5 flex-shrink-0"
-       :class="[{'-mt-96': isSquished}]">
+       :class="[{'mt-per-140 sm:mt-0': isSquished}]">
     <template v-if="dataFetchFailure">
       Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
     </template>

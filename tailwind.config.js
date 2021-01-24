@@ -11,6 +11,9 @@ module.exports = {
             },
             fontFamily: {
                 'fancy': ['FancyFont', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
+            },
+            margin: {
+                "per-140": "-140%"
             }
         }
     },
