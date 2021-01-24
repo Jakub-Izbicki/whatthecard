@@ -1,17 +1,19 @@
 <template>
-  <div class="text-4xl font-fancy pb-3">
+  <div class="text-4xl pb-3">
     <transition name="fade" mode="out-in" appear>
       <div v-if="answer === correct" key="correct">
-        Success!
+        <p class="font-fancy">Success!</p>
+        <p class="text-sm font-bold animate-bounce">Click to continue</p>
       </div>
       <div v-else-if="answer === incorrect" key="incorrect">
-        Not even close!
+        <p class="font-fancy">Not even close!</p>
+        <p class="text-sm font-bold animate-bounce">Click to continue</p>
       </div>
       <div v-else-if="answer === loading" key="incorrect">
-        Fetching cards..
+        <p class="font-fancy">Fetching cards..</p>
       </div>
       <div v-else key="unanswered">
-        What's this card?
+        <p class="font-fancy">What's this card?</p>
       </div>
     </transition>
   </div>
