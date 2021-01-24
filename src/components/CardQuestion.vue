@@ -14,7 +14,9 @@
             <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl overflow-hidden"
                  :class="[{'shadow-card-correct' : isCorrect && !isSquashed},
                  {'shadow-card-incorrect' : !isCorrect && !isSquashed},
-                 {'shadow-card' : isSquashed}]">
+                 {'shadow-card' : isSquashed},
+                 {'cursor-pointer' : isLastQuestion}]"
+                 @click="showNextQuestion">
               <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
             </div>
 
@@ -90,6 +92,11 @@ export default class CardQuestion extends Vue {
     return this.question.squashed;
   }
 
+  get isLastQuestion(): boolean {
+    const game = Game.getInstance();
+    return game.getQuestions()[game.getQuestions().length - 1].id === this.questionId;
+  }
+
   mounted() {
     this.question.fetchData();
   }
@@ -101,7 +108,12 @@ export default class CardQuestion extends Vue {
       this.question.state = QuestionState.INCORRECT;
     }
     this.showCard = true;
-    this.$emit('question-answered');
+  }
+
+  private showNextQuestion(): void {
+    if (this.isLastQuestion) {
+      this.$emit('question-answered');
+    }
   }
 }
 </script>

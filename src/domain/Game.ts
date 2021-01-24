@@ -40,10 +40,8 @@ export default class Game {
     private prepareNextQuestion(): void {
         if (this.pendingQuestions.length) {
             const nextQuestion = this.pendingQuestions[0];
-            setTimeout(() => {
-                this.questions.push(nextQuestion);
-                this.squashAllExceptTwoNewest();
-            }, 1000);
+            this.questions.push(nextQuestion);
+            this.squashAllExceptTwoNewest();
         }
 
         const nextPendingQuestion = new Question();
