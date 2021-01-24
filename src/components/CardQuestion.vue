@@ -5,7 +5,8 @@
       Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
     </template>
     <template v-else>
-      <QuestionPrompt :answer-sync.sync="state"></QuestionPrompt>
+      <QuestionPrompt :class="{'invisible pointer-events-none' : isSquished}"
+                      :answer-sync.sync="state"></QuestionPrompt>
 
       <transition name="scale-transition" mode="out-in" appear>
         <div v-if="dataReady" class="relative">
