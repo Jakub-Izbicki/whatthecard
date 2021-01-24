@@ -42,7 +42,7 @@ export default class Game {
             const nextQuestion = this.pendingQuestions[0];
             setTimeout(() => {
                 this.questions.push(nextQuestion);
-                this.squishAllExceptTwoNewest();
+                this.squashAllExceptTwoNewest();
             }, 1000);
         }
 
@@ -51,9 +51,9 @@ export default class Game {
         this.pendingQuestions = [nextPendingQuestion];
     }
 
-    private squishAllExceptTwoNewest(): void {
+    private squashAllExceptTwoNewest(): void {
         if (this.questions.length > 2) {
-            this.questions[this.questions.length - 3].squished = true;
+            this.questions[this.questions.length - 3].squashed = true;
         }
     }
 }

@@ -1,20 +1,20 @@
 <template>
   <div class="w-full sm:w-96 p-5 flex-shrink-0"
-       :class="[{'mt-per-140 sm:mt-0': isSquished}]">
+       :class="[{'mt-per-140 sm:mt-0': isSquashed}]">
     <template v-if="dataFetchFailure">
       Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
     </template>
     <template v-else>
-      <QuestionPrompt :class="{'invisible pointer-events-none' : isSquished}"
+      <QuestionPrompt :class="{'invisible pointer-events-none' : isSquashed}"
                       :answer-sync.sync="state"></QuestionPrompt>
 
       <transition name="scale-transition" mode="out-in" appear>
         <div v-if="dataReady" class="relative">
           <transition name="scale-transition" mode="out-in">
             <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl overflow-hidden"
-                 :class="[{'shadow-card-correct' : isCorrect && !isSquished},
-                 {'shadow-card-incorrect' : !isCorrect && !isSquished},
-                 {'shadow-card' : isSquished}]">
+                 :class="[{'shadow-card-correct' : isCorrect && !isSquashed},
+                 {'shadow-card-incorrect' : !isCorrect && !isSquashed},
+                 {'shadow-card' : isSquashed}]">
               <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
             </div>
 
@@ -86,8 +86,8 @@ export default class CardQuestion extends Vue {
     return this.question.correctAnswer;
   }
 
-  get isSquished(): boolean {
-    return this.question.squished;
+  get isSquashed(): boolean {
+    return this.question.squashed;
   }
 
   mounted() {

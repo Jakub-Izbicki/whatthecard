@@ -20,7 +20,7 @@ export default class Question {
 
     public state = QuestionState.UNANSWERED;
 
-    public squished = false;
+    public squashed = false;
 
     private fetched = false;
 
