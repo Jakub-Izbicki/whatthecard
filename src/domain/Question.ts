@@ -26,7 +26,8 @@ export default class Question {
 
     constructor() {
         this.id = uuid4();
-        this.correctAnswer = 0;
+        this.correctAnswer = this.randomInRange(0, Question.ANSWERS_COUNT);
+        console.info(this.correctAnswer)
         this.promisedCardData = [...new Array(Question.ANSWERS_COUNT).keys()].map((i) => {
             if (i === this.correctAnswer) {
                 return PromisedCardData.newRandom(true);
@@ -58,5 +59,9 @@ export default class Question {
                     }
                 });
         }
+    }
+
+    private randomInRange(min: number, max: number): number {
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 }
