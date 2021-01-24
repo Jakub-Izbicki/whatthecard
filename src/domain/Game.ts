@@ -2,22 +2,28 @@ import Question from "@/domain/Question";
 
 export default class Game {
 
+    private static instance: Game;
+
     private questions: Question[] = [];
 
     private pendingQuestions: Question[] = [];
 
-    public static newGame(): Game {
-        const game = new Game();
-        game.initFirstQuestion();
-        return game;
+    public static getInstance(): Game {
+        if (!Game.instance) {
+            const game = new Game();
+            game.initFirstQuestion();
+            Game.instance = game;
+        }
+
+        return Game.instance;
     }
 
-    get getQuestions(): Question[] {
+    public getQuestions(): Question[] {
         return this.questions;
     }
 
-    get getPendingQuestions(): Question[] {
-        return this.pendingQuestions;
+    public getQuestionById(id: string): Question {
+        return this.questions.find(q => q.id === id) as Question;
     }
 
     public onQuestionAnswered(): void {

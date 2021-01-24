@@ -1,7 +1,7 @@
 <template>
   <transition-group tag="div" name="questions"
                     class="stretched flex flex-col-reverse sm:flex-row sm:flex-wrap-reverse justify-center items-center overflow-auto">
-    <CardQuestion v-for="question in questions" :key="question.id" :question="question" class="questions-item"
+    <CardQuestion v-for="question in questions" :key="question.id" :question-id="question.id" class="questions-item"
                   @question-answered="onQuestionAnswered">
     </CardQuestion>
   </transition-group>
@@ -18,10 +18,10 @@ import Game from "@/domain/Game";
 })
 export default class Home extends Vue {
 
-  private game = Game.newGame();
+  private game = Game.getInstance();
 
   get questions(): Question[] {
-    return this.game.getQuestions;
+    return this.game.getQuestions();
   }
 
   private onQuestionAnswered(): void {

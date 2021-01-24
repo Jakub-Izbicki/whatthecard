@@ -38,15 +38,17 @@ import {Component, Prop, Vue} from "vue-property-decorator"
 import QuestionPrompt from "@/components/QuestionPrompt.vue";
 import CardData, {QuestionState} from "@/domain/CardData";
 import QuestionButton from "@/components/QuestionButton.vue";
-import Question from "@/domain/Question";
+import Game from "@/domain/Game";
 
 @Component({
   components: {QuestionButton, QuestionPrompt}
 })
 export default class CardQuestion extends Vue {
 
-  @Prop({required: true})
-  private question!: Question;
+  @Prop({required: true, type: String})
+  private questionId!: string;
+
+  private question = Game.getInstance().getQuestionById(this.questionId);
 
   private cardsCount = this.question.promisedCardData.length;
 
