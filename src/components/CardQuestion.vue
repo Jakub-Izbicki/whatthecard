@@ -89,7 +89,14 @@ export default class CardQuestion extends Vue {
   }
 
   get isSquashed(): boolean {
-    return this.question.squashed;
+    return this.question.squashed && this.isSecondCardWithFirstDataIsLoaded;
+  }
+
+  get isSecondCardWithFirstDataIsLoaded(): boolean {
+    const questions = Game.getInstance().getQuestions();
+    const isSecondCard = questions.length >= 2 && questions[questions.length - 2].id === this.questionId;
+    const isFirstCardDataLoaded = questions[questions.length - 1].cardData.length === 4;
+    return !isSecondCard || (isSecondCard && isFirstCardDataLoaded);
   }
 
   get isLastQuestion(): boolean {
