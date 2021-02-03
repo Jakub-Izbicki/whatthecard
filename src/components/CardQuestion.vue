@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sm:w-96 p-5 flex-shrink-0"
+  <div class="w-full sm:w-question sm:h-question p-5 flex-shrink-0"
        :class="[{'mt-per-140 sm:mt-0': isSquashed}]">
     <template v-if="dataFetchFailure">
       Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.

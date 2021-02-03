@@ -14,6 +14,12 @@ module.exports = {
             },
             margin: {
                 "per-140": "-140%"
+            },
+            width: {
+                "question": "24rem",
+            },
+            height: {
+                "question": "36rem",
             }
         }
     },
