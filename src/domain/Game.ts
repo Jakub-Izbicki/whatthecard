@@ -41,7 +41,7 @@ export default class Game {
         if (this.pendingQuestions.length) {
             const nextQuestion = this.pendingQuestions[0];
             this.questions.push(nextQuestion);
-            this.squashAllExceptCurrent();
+            this.squashAllExceptLastTwo();
         }
 
         const nextPendingQuestion = new Question();
@@ -49,9 +49,9 @@ export default class Game {
         this.pendingQuestions = [nextPendingQuestion];
     }
 
-    private squashAllExceptCurrent(): void {
-        if (this.questions.length > 1) {
-            this.questions[this.questions.length - 2].squashed = true;
+    private squashAllExceptLastTwo(): void {
+        if (this.questions.length > 2) {
+            this.questions[this.questions.length - 3].squashed = true;
         }
     }
 }
