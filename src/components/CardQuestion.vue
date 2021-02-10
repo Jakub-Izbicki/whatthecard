@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full sm:w-question sm:h-question p-5 flex-shrink-0"
-       :class="[{'mt-per-140 sm:mt-0': isSquashed}]">
+  <div class="w-screen sm:w-question h-screen-152 sm:h-question p-5 flex-shrink-0"
+       :class="[{'mt-per-130 sm:mt-0': isSquashed}]">
     <template v-if="dataFetchFailure">
       Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
     </template>
@@ -89,15 +89,15 @@ export default class CardQuestion extends Vue {
   }
 
   get isSquashed(): boolean {
-    return this.question.squashed && this.isSecondCardWithFirstDataIsLoaded;
+    return this.question.squashed;
   }
 
-  get isSecondCardWithFirstDataIsLoaded(): boolean {
-    const questions = Game.getInstance().getQuestions();
-    const isSecondCard = questions.length >= 2 && questions[questions.length - 2].id === this.questionId;
-    const isFirstCardDataLoaded = questions[questions.length - 1].cardData.length === 4;
-    return !isSecondCard || (isSecondCard && isFirstCardDataLoaded);
-  }
+  // get isSecondCardWithFirstDataIsLoaded(): boolean {
+  //   const questions = Game.getInstance().getQuestions();
+  //   const isSecondCard = questions.length >= 2 && questions[questions.length - 2].id === this.questionId;
+  //   const isFirstCardDataLoaded = questions[questions.length - 1].cardData.length === 4;
+  //   return !isSecondCard || (isSecondCard && isFirstCardDataLoaded);
+  // }
 
   get isLastQuestion(): boolean {
     const game = Game.getInstance();
