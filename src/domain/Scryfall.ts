@@ -26,6 +26,7 @@ export default class Scryfall {
 
 // todo: set full_art to false in request
 // todo: non-tokens?
+// todo: non-basic-lands?
 // todo: add selecting card type
 export class ScryfallRequest {
 
