@@ -1,41 +1,38 @@
 <template>
-  <div class="w-screen sm:w-question h-screen-152 sm:h-question p-5 flex-shrink-0 flex flex-col justify-center"
-       :class="[{'mt-per-130 sm:mt-0': isSquashed}]">
-    <template v-if="dataFetchFailure">
-      Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
-    </template>
-    <template v-else>
-      <QuestionPrompt :class="{'invisible pointer-events-none' : !isLastQuestion}"
-                      :answer-sync.sync="state"></QuestionPrompt>
-
+  <div class="p-5 flex-shrink-0" :class="[{'mt-per-130 sm:mt-0': isSquashed}]">
+    <div class="relative w-mobileQuestion sm:w-question h-mobileQuestion sm:h-question flex flex-col justify-center">
+      <div class="relative">
+        <QuestionPrompt :class="{'invisible pointer-events-none' : !isLastQuestion}"
+                        :answer-sync.sync="state"></QuestionPrompt>
+      </div>
       <transition name="scale-transition" mode="out-in" appear>
-        <div v-if="dataReady" class="relative">
-          <transition name="scale-transition" mode="out-in">
-            <div v-if="showCard" key="imageLarge" class="bg-dark rounded-2xl overflow-hidden"
-                 :class="[{'shadow-card-correct' : isCorrect && !isSquashed},
+        <div v-if="dataReady && showCard" key="imageLarge" class="bg-dark rounded-2xl overflow-hidden"
+             :class="[{'shadow-card-correct' : isCorrect && !isSquashed},
                  {'shadow-card-incorrect' : !isCorrect && !isSquashed},
                  {'shadow-card' : isSquashed},
                  {'cursor-pointer' : isLastQuestion}]"
-                 @click="showNextQuestion">
-              <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
-            </div>
-
-            <div v-if="!showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
-              <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop">
-              <div class="flex flex-col items-center">
-                <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
-                                @question-answered="setAnswer">
-                </QuestionButton>
-              </div>
-            </div>
-          </transition>
+             @click="showNextQuestion">
+          <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
         </div>
 
-        <b-progress v-else :value="cardsReady / cardsCount * 100" show-value size="is-large">
+        <div v-else-if="dataReady && !showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+          <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop">
+          <div class="flex flex-col items-center">
+            <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
+                            @question-answered="setAnswer">
+            </QuestionButton>
+          </div>
+        </div>
+
+        <b-progress v-else-if="!dataFetchFailure" :value="cardsReady / cardsCount * 100" show-value size="is-large">
           {{ `${cardsReady} / ${cardsCount}` }}
         </b-progress>
+
+        <template v-else>
+          Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
+        </template>
       </transition>
-    </template>
+    </div>
   </div>
 </template>
 

@@ -17,10 +17,11 @@ module.exports = {
             },
             width: {
                 "question": "24rem",
+                "mobileQuestion": "90vw"
             },
             height: {
-                "question": "36rem",
-                "screen-152": "152vw",
+                "question": "33.5rem",
+                "mobileQuestion": "126vw",
             }
         }
     },

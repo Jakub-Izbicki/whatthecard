@@ -1,7 +1,7 @@
 <template>
   <transition-group tag="div" name="questions"
                     class="stretched flex flex-col-reverse sm:flex-row sm:flex-wrap-reverse justify-center items-center
-                    overflow-hidden">
+                    overflow-hidden py-10">
     <CardQuestion v-for="question in questions" :key="question.id" :question-id="question.id" class="questions-item"
                   @question-answered="onQuestionAnswered">
     </CardQuestion>
