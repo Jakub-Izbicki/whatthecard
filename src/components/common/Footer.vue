@@ -1,5 +1,7 @@
 <template>
-  <div class="text-3xl w-full bg-dark text-white py-2 font-fancy">The End..</div>
+  <div class="w-full bg-dark sm:py-2 text-white font-fancy">
+    <span class="text-xl sm:text-3xl">The End..</span>
+  </div>
 </template>
 
 <script lang="ts">
