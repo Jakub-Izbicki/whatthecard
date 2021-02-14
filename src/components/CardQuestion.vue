@@ -15,9 +15,10 @@
           <img class="rounded-2xl" :src="cardDatas[question.correctAnswer].image_uris.large">
         </div>
 
-        <div v-else-if="dataReady && !showCard" key="imageCrop" class="bg-dark rounded-2xl shadow-card overflow-hidden">
+        <div v-else-if="dataReady && !showCard" key="imageCrop"
+             class="h-full bg-dark rounded-2xl shadow-card overflow-hidden flex flex-col">
           <img class="rounded-t-2xl" :src="cardDatas[question.correctAnswer].image_uris.art_crop">
-          <div class="flex flex-col items-center">
+          <div class="flex-1 flex flex-col items-center justify-around">
             <QuestionButton v-for="(cardData, i) in cardDatas" :key="i" :card-data="cardData" :numeral="i + 1"
                             @question-answered="setAnswer">
             </QuestionButton>
