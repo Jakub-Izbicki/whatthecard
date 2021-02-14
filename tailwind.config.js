@@ -13,7 +13,7 @@ module.exports = {
                 'fancy': ['FancyFont', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
             },
             margin: {
-                "per-130": "-130%"
+                "squashed": "-110%"
             },
             width: {
                 "question": "24rem",

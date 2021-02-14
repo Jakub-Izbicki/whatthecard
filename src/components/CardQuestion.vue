@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 flex-shrink-0" :class="[{'mt-per-130 sm:mt-0': isSquashed}]">
+  <div class="px-5 py-3 flex-shrink-0" :class="[{'mt-squashed sm:mt-0': isSquashed}]">
     <div class="relative w-mobileQuestion sm:w-question h-mobileQuestion sm:h-question flex flex-col justify-center">
       <div class="relative">
         <QuestionPrompt :class="{'invisible pointer-events-none' : !isLastQuestion}"
