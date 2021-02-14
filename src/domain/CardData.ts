@@ -6,5 +6,5 @@ export default class CardData {
 }
 
 export enum QuestionState {
-    LOADING, UNANSWERED, CORRECT, INCORRECT
+    LOADING, UNANSWERED, CORRECT, INCORRECT, FETCH_ERROR
 }

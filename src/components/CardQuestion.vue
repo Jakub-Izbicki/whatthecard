@@ -24,13 +24,16 @@
           </div>
         </div>
 
-        <b-progress v-else-if="!dataFetchFailure" :value="cardsReady / cardsCount * 100" show-value size="is-large">
+        <b-progress v-else-if="!isFetchError" :value="cardsReady / cardsCount * 100" show-value size="is-large">
           {{ `${cardsReady} / ${cardsCount}` }}
         </b-progress>
 
-        <template v-else>
-          Oops, card data fetch failed! TODO: Add refresh card button to re-fetch data.
-        </template>
+        <div v-else>
+          <p class="font-bold">Oops, card data fetch failed! Please refresh.</p>
+          <b-button rounded type="is-dark m-5 ">
+            Refresh
+          </b-button>
+        </div>
       </transition>
     </div>
   </div>
@@ -57,10 +60,6 @@ export default class CardQuestion extends Vue {
 
   private showCard = false;
 
-  get dataFetchFailure(): boolean {
-    return this.question.cardDataFetchFailure;
-  }
-
   get dataReady(): boolean {
     return !!this.cardDatas.length;
   }
@@ -74,11 +73,15 @@ export default class CardQuestion extends Vue {
   }
 
   get state(): QuestionState {
-    return this.dataReady ? this.question.state : QuestionState.LOADING;
+    return this.dataReady ? this.question.state : this.isFetchError ? QuestionState.FETCH_ERROR : QuestionState.LOADING;
   }
 
   get isCorrect(): boolean {
     return this.question.state == QuestionState.CORRECT;
+  }
+
+  get isFetchError(): boolean {
+    return this.question.state == QuestionState.FETCH_ERROR;
   }
 
   get correctAnswer(): number {

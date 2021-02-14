@@ -12,6 +12,9 @@
       <div v-else-if="answer === loading" key="incorrect">
         <p class="font-fancy">Fetching cards..</p>
       </div>
+      <div v-else-if="answer === fetchError" key="fetchError">
+        <p class="font-fancy">Error</p>
+      </div>
       <div v-else key="unanswered" class="relative">
         <p class="font-fancy">What's this card?</p>
         <p class="text-sm font-bold absolute left-0 right-0">Select answer below</p>
@@ -35,6 +38,8 @@ export default class QuestionPrompt extends Vue {
   private correct = QuestionState.CORRECT;
 
   private incorrect = QuestionState.INCORRECT;
+
+  private fetchError = QuestionState.FETCH_ERROR;
 }
 </script>
 

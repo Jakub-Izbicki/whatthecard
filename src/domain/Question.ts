@@ -16,8 +16,6 @@ export default class Question {
 
     public cardDatasReady = 0;
 
-    public cardDataFetchFailure = false;
-
     public state = QuestionState.UNANSWERED;
 
     public squashed = false;
@@ -52,7 +50,7 @@ export default class Question {
                     const anyDataIncomplete = data.some((cardData) => !cardData);
 
                     if (anyDataIncomplete) {
-                        this.cardDataFetchFailure = true;
+                        this.state = QuestionState.FETCH_ERROR;
                     } else {
                         this.cardData = data as CardData[];
                     }

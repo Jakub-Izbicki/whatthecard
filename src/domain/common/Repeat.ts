@@ -9,11 +9,11 @@ export default class Repeat<T> {
     }
 
     public do(): Promise<T> {
-        let called = this.callable();
+        const called = this.callable();
 
         // on error, wait for specified delay time, and then retry call, up to max specified times
         [...new Array(this.repeatMax).keys()].forEach(() => {
-            called = called.catch(() => this.wait().then(() => this.callable()));
+            called.catch(() => this.wait().then(() => this.callable()));
         });
 
         return called;
